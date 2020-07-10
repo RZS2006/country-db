@@ -1,0 +1,56 @@
+.catalog {
+    padding: 2rem 0 3rem 0;
+}
+
+.results-found-container span {
+    font-size: 1.6rem;
+    color: rgb(70, 70, 70);
+}
+
+.results-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-item {
+    margin-top: 1.6rem;
+    height: 9rem;
+    display: inline-flex;
+    background-color: white;
+    align-items: center;
+
+}
+
+.country-image {
+    height: 100%;
+}
+
+.country-name {
+    margin-left: 1.8rem;
+    font-size: 3.2rem;
+    font-weight: 500;
+}
+
+.country-native-name {
+    font-size: 1.8rem;
+    color: rgb(70, 70, 70);
+    font-weight: 400;
+}
+
+.country-favorite-status {
+    margin-left: auto;
+    font-size: 1.8rem;
+    color: #00812C;
+    display: flex;
+    align-items: center;
+}
+
+.country-favorite-status span{
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    background-color: #00812C;
+    border-radius: 50%;
+    margin: 0 2rem 0 1.5rem;
+}
