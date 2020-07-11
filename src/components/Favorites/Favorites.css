@@ -1,8 +1,14 @@
 .title-container {
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
-.title-container span {
+.title {
     font-size: 4rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
+}
+
+@media screen and (max-width: 720px) {
+    .title {
+        font-size: 3rem;
+    }
 }

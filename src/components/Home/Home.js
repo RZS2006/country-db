@@ -1,16 +1,24 @@
 import React from 'react';
 
-import Search from "./Search/Search";
-import Catalog from "./Catalog/Catalog";
+import "./Home.css"
+
+import Search from "./Search";
+import Catalog from "../Catalog/Catalog";
 
 const Home = () => {
     return (
-        <div className="home">
+        <main className="home">
             <div className="container">
                 <Search />
-                <Catalog />
+                <div className="divider"></div>
+                <div className="results-container">
+                    <div className="results-found-container">
+                        <small>189 results found</small>
+                    </div>
+                    <Catalog />
+                </div>
             </div>
-        </div>
+        </main>
     )
 }
 

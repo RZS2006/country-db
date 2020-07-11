@@ -2,22 +2,18 @@ import React from 'react'
 
 import "./Favorites.css"
 
-import FavoriteItem from "./FavoriteItem";
+import Catalog from "../Catalog/Catalog"
 
 const Favorites = () => {
     return (
-        <div className="favorites">
+        <main className="favorites">
             <div className="container">
                 <div className="title-container">
-                    <span>Favorites</span>
+                    <h2 className="title">Favorites</h2>
                 </div>
-                <div className="results-container">
-                    <FavoriteItem />
-                    <FavoriteItem />
-                    <FavoriteItem />
-                </div>
+                <Catalog />
             </div>
-        </div>
+        </main>
     )
 }
 

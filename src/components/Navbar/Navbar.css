@@ -1,9 +1,9 @@
 .navbar {
     height: 72px;
-    background-color: #00812C;
+    background-color: var(--primary-green);
 }
 
-.nav {
+.navbar-container {
     height: inherit;
     display: flex;
     align-items: center;
@@ -17,14 +17,19 @@
 
 .favorites-container {
     margin-left: auto;
+}
+
+.favorites-container small {
     color: white;
     font-size: 2rem;
     font-weight: 500;
 }
 
-.favorites-amount {
+.favorites-amount-badge {
+    font-size: 2rem;
+    font-weight: 500;
     margin-left: 10px;
-    color: #00812C;
+    color: var(--primary-green);
     background-color: white;
     display: inline-flex;
     align-items: center;
@@ -34,12 +39,23 @@
     border-radius: 5px;
 }
 
-.favorites-container:hover, .logo-container:hover > .logo {
-    color: rgb(240, 240, 240);
+.favorites-container:hover small, .logo-container:hover .logo {
+    color: var(--bg-grey);
     transition: 200ms;
 }
 
-.favorites-container:hover > .favorites-amount {
-    background-color: rgb(240, 240, 240);
+.favorites-container:hover .favorites-amount-badge {
+    background-color: var(--bg-grey);
     transition: 200ms;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        height: 60px;
+    }
+
+    .favorites-amount-badge {
+        height: 30px;
+        width: 30px;
+    }
 }
