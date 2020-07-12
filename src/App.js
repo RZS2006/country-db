@@ -1,3 +1,6 @@
+// --- CountryDB - App.js ---
+
+// Imports
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -10,6 +13,7 @@ import Home from "./components/Home/Home";
 import Favorites from "./components/Favorites/Favorites";
 import Details from "./components/Details/Details";
 
+// Component
 const App = () => {
     return (
         <Router>

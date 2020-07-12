@@ -1,7 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.d-favorites-container {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.d-favorites-container small {
+    font-size: 1.8rem;
+    color: var(--primary-green);
+}
+
 .d-country-name {
     font-weight: 500;
     font-size: 4.8rem;
-    margin-top: 2rem;
 }
 
 .d-country-native-name {

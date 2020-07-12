@@ -1,61 +1,65 @@
+/* --- CountryDB - navbar.css --- */
+
+/* Styles */
 .navbar {
     height: 72px;
-    background-color: var(--primary-green);
+    background-color: var(--green-primary);
 }
 
-.navbar-container {
+.navbar__flex-container {
     height: inherit;
     display: flex;
     align-items: center;
 }
 
-.logo {
+.navbar__logo {
     color: white;
     font-size: 2.6rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
 }
 
-.favorites-container {
+.navbar__favorites-container {
     margin-left: auto;
 }
 
-.favorites-container small {
+.navbar__favorites-container small {
     color: white;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
 }
 
-.favorites-amount-badge {
+.navbar__favorites-amount-badge {
     font-size: 2rem;
-    font-weight: 500;
-    margin-left: 10px;
-    color: var(--primary-green);
+    font-weight: var(--fw-medium);
+    margin-left: 8px;
+    color: var(--green-primary);
     background-color: white;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 35px;
-    width: 35px;
+    height: 30px;
+    width: 30px;
     border-radius: 5px;
 }
 
-.favorites-container:hover small, .logo-container:hover .logo {
-    color: var(--bg-grey);
-    transition: 200ms;
+.navbar__favorites-container:hover small, .navbar__logo-container:hover .navbar__logo {
+    color: var(--grey-light--bg);
+    transition: var(--transition);
 }
 
-.favorites-container:hover .favorites-amount-badge {
-    background-color: var(--bg-grey);
-    transition: 200ms;
+.navbar__favorites-container:hover .navbar__favorites-amount-badge {
+    background-color: var(--grey-light--bg);
+    transition: var(--transition);
 }
 
+/* Media Queries */
 @media screen and (max-width: 600px) {
     .navbar {
         height: 60px;
     }
 
-    .favorites-amount-badge {
-        height: 30px;
-        width: 30px;
+    .navbar__favorites-amount-badge {
+        height: 25px;
+        width: 25px;
     }
 }

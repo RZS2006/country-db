@@ -1,15 +1,27 @@
+/* --- CountryDB - index.css --- */
+
+/* Imports */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
+
+/* Variables */
 :root {
-  --primary-green: #00812C;
-  --text-grey: #4D4D4D;
-  --primary-grey: #E5E5E5;
-  --bg-grey: #EFEFEF;
+  --green-primary: #00812C;
+  --green-dark--hover: #016623;
+  --grey-dark--text: #4D4D4D;
+  --grey-primary: #E5E5E5;
+  --grey-light--bg: #EFEFEF;
+  --black-light--hover: #272727;
 
   --fw-regular: 400;
   --fw-medium: 500;
+
+  --transition: 200ms;
+
+  --font-size: 62.5%;
 }
 
+/* Styles */
 * {
   margin: 0;
   padding: 0;
@@ -17,19 +29,20 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: var(--font-size);
 }
 
 body {
-  background-color: var(--bg-grey);
+  background-color: var(--grey-light--bg);
 }
 
-body, input, button {
+body, button, input {
   font-family: 'Poppins', sans-serif;
 }
 
 .container {
   width: 80%;
+  max-width: 1512px;
   height: inherit;
   margin: 0 auto;
 }
@@ -39,9 +52,10 @@ a {
   color: inherit;
 }
 
+/* Media Queries */
 @media screen and (max-width: 600px) {
-  html {
-    font-size: 55%;
+  :root {
+    --font-size: 55%;
   }
 
   .container {

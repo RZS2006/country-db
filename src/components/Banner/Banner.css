@@ -1,0 +1,22 @@
+.banner {
+    background-color: var(--primary-grey);
+    padding: 1.6rem 0;
+}
+
+.link-container {
+    font-size: 1.6rem;
+}
+
+.link-container span {
+    margin-left: 4px;
+    transition: margin-left 200ms;
+}
+.link-container:hover {
+    color: rgb(41, 41, 41);
+    transition: 200ms;
+}
+
+.link-container:hover span {
+    margin-left: 6px;
+    transition: 200ms;
+}

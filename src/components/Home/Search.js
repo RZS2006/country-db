@@ -1,25 +1,30 @@
+// --- CountryDB - Search.js ---
+
+
+// Imports
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+// Component
 const Search = () => {
     return (
         <section className="search">
-            <form className="query-container">
-                <label className="input-label query-input-label" htmlFor="query">
+            <form className="search__query-container">
+                <label className="search__input-label search__query-input-label" htmlFor="query">
                     Search for a country
-                    <input className="query-input" type="text" name="query"/>
+                    <input className="search__query-input" type="text" name="query"/>
                 </label>
-                <button className="query-submit main" type="submit">Search</button>
-                <button className="query-submit responsive" type="submit"><FontAwesomeIcon icon={faSearch}/></button>
+                <button className="search__query-submit primary" type="submit">Search</button>
+                <button className="search__query-submit secondary" type="submit"><FontAwesomeIcon icon={faSearch} /></button>
             </form>
-            <div className="filter-container">
-                <label className="input-label filter-checkbox-label" htmlFor="hide-non-favorites">
-                    <input className="filter-checkbox" type="checkbox" name="hide-non-favorites"/>
+            <div className="search__filter-container">
+                <label className="search__input-label search__filter-checkbox-label" htmlFor="hide-non-favorites">
+                    <input className="search__filter-checkbox" type="checkbox" name="hide-non-favorites"/>
                     Hide Non-Favorites
                 </label>
-                <label className="input-label filter-checkbox-label" htmlFor="hide-favorites">
-                    <input className="filter-checkbox" type="checkbox" name="hide-favorites"/>
+                <label className="search__input-label search__filter-checkbox-label" htmlFor="hide-favorites">
+                    <input className="search__filter-checkbox" type="checkbox" name="hide-favorites"/>
                     Hide Favorites
                 </label>
             </div>

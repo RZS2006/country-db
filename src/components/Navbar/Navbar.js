@@ -1,22 +1,26 @@
+// --- CountryDB - Navbar.js ---
+
+// Imports
 import React from 'react'
 import { Link } from "react-router-dom";
 
 import './Navbar.css';
 
+// Component
 const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="container">
-                <div className="navbar-container">
-                    <div className="logo-container">   
+                <div className="navbar__flex-container">
+                    <div className="navbar__logo-container">   
                         <Link to="/">
-                            <h1 className="logo">CountryDB</h1>
+                            <h1 className="navbar__logo">CountryDB</h1>
                         </Link>
                     </div>
-                    <div className="favorites-container">
+                    <div className="navbar__favorites-container">
                         <Link to="/favorites">
                             <small>Favorites</small>
-                            <span className="favorites-amount-badge">2</span>
+                            <span className="navbar__favorites-amount-badge">2</span>
                         </Link>
                     </div>
                 </div>
