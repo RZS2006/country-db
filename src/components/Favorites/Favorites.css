@@ -1,14 +1,29 @@
-.title-container {
+/* --- CountryDB - Favorites.css --- */
+
+/* Styles */
+.favorites__title-container {
     margin: 2rem 0;
 }
 
-.title {
-    font-size: 4rem;
+.favorites__title {
+    font-size: 3.8rem;
     font-weight: var(--fw-medium);
 }
 
-@media screen and (max-width: 720px) {
-    .title {
-        font-size: 3rem;
+.favorites__divider {
+    width: 100%;
+    height: 2px;
+    background-color: var(--grey-primary);
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 600px) {
+    .favorites__title {
+        font-size: 2.8rem;
+    }
+
+    .favorites__divider {
+        display: none;
     }
 }

@@ -1,22 +1,28 @@
+/* --- CountryDB - Banner.css --- */
+
+/* Styles */
 .banner {
-    background-color: var(--primary-grey);
+    background-color: var(--grey-primary);
     padding: 1.6rem 0;
 }
 
-.link-container {
+.banner__link-container {
     font-size: 1.6rem;
+    display: flex;
+    align-items: center;
 }
 
-.link-container span {
+.banner__link-container small {
+    font-size: 1.6rem;
     margin-left: 4px;
-    transition: margin-left 200ms;
+    transition: margin-left var(--transition);
 }
-.link-container:hover {
-    color: rgb(41, 41, 41);
-    transition: 200ms;
+.banner__link-container:hover {
+    color: var(--black-light--hover);
+    transition: var(--transition);
 }
 
-.link-container:hover span {
+.banner__link-container:hover small {
     margin-left: 6px;
-    transition: 200ms;
+    transition: var(--transition);
 }

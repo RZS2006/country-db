@@ -1,22 +1,22 @@
+// --- CountryDB - Details.js ---
+
+// Imports
 import React from 'react'
 
 import "./Details.css"
 
 import Banner from "../Banner/Banner";
+import DetailsHeader from "./DetailsHeader";
 
+// Component
 const Details = () => {
     return (
         <main className="details">
             <Banner />
             <div className="container">
-                <div className="header">
-                <div className="d-country-name">Germany <span className="d-country-native-name">(Deutschland)</span></div>
-                <div className="d-favorites-container">
-                    <small>Favorite</small>
-                    <span className="country-favorite-status-dot"></span>
-                </div>
-                </div>
-                <img className="d-country-image "src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag"/>
+                <DetailsHeader />
+                <div className="details__divider"></div>
+                <img className="details__flag" src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="flag of Germany"/>
                 <div className="section-country-names">
                     <div className="section-header">Names</div>
                     <span className="data-key">Name: <span className="data-value">Germany</span></span>
