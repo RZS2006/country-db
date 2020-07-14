@@ -1,10 +1,12 @@
 /* --- CountryDB - Details.css --- */
 
 /* Styles */
+
+/* DetailsHeader.js */
 .details__header {
     display: flex;
     align-items: center;
-    margin-top: 1rem;
+    margin: 1rem 0;
 }
 
 .details__name-container {
@@ -43,6 +45,7 @@
     margin-left: 1rem;
 }
 
+/* Details.js */
 .details__divider {
     width: 100%;
     height: 2px;
@@ -54,59 +57,87 @@
     margin-top: 2rem;
 }
 
-.section-country-names, .section-country-other {
+/* DetailsData.js */
+.details__data {
+    padding: 3rem 0;
+}
+.details__data-section {
     margin-top: 2rem;
     background-color: white;
 }
 
-.section-header {
+.details__data-section:first-child {
+    margin-top: 0;
+}
+
+.details__data-section-header {
     padding: 1rem 3rem;
     font-size: 1.6rem;
-    background-color: #00812C;
+    background-color: var(--green-primary);
     color: white;
 }
 
-.country-translations {
+.details__data-section-content {
+    padding: 2rem 3rem;
+}
+
+.details__data-section-entry {
+    margin-top: 1rem;
+}
+
+.details__data-section-entry:first-child {
+    margin-top: 0;
+}
+
+.details__entry-key {
+    font-size: 1.6rem;
+}
+
+.details__entry-value {
+    margin-left: 0.6rem;
+    font-size: 2rem;
+    font-weight: var(--fw-medium);
+}
+
+.details__dropdown-button {
     padding: 1rem 3rem;
     font-size: 1.6rem;
-    background-color: rgb(180, 180, 180);
+    background-color: var(--grey-primary);
     display: flex;
+    align-items: center;
 }
 
-.data-key {
-    padding-left: 3rem;
-    display: block;
-    margin: 2rem 0;
+.details__data-section-dropdown span {
+    margin-right: auto;
+}
+
+.details__dropdown-panel {
+    padding: 1rem 3rem;
+}
+
+.details__entry-value.multiple {
+    display: inline-flex;
+}
+
+.details__entry-value-chip {
     font-size: 1.6rem;
-}
-
-.data-value {
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.data-value-tag {
-    font-size: 1.6rem;
-    padding: 0.6rem 2rem;
+    padding: 0.4rem 1.6rem;
     border-radius: 4rem;
-    margin-left: 2rem;
-    background-color: rgb(180, 180, 180);
+    background-color: var(--grey-primary);
 }
 
-.data-value-tag .secondary {
+.details__entry-value-chip small {
+    margin-left: 0.4rem;
     font-size: 1.4rem;
-    color: rgb(70, 70, 70);
-}
-
-.country-translations span {
-    margin-left: auto;
-    font-size: 1.6rem;
-    display: inline-block;
+    font-weight: var(--fw-regular);
+    color: var(--grey-dark--text);
 }
 
 /* Media Queries */
 
 @media screen and (max-width: 600px) {
+
+    /* DetailsHeader.js */
     .details__header {
         display: block;
     }
@@ -120,6 +151,7 @@
         font-size: 1.6rem;
     }
 
+    /* Details.js */
     .details__divider {
         display: none;
     }
