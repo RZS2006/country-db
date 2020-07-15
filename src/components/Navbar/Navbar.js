@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import './Navbar.css';
 
 // Component
-const Navbar = () => {
+const Navbar = (props) => {
+    const favoritesAmount = props.countries.filter(country => country.favorited).length;
     return (
         <nav className="navbar">
             <div className="container">
@@ -20,7 +21,7 @@ const Navbar = () => {
                     <div className="navbar__favorites-container">
                         <Link to="/favorites">
                             <small>Favorites</small>
-                            <span className="navbar__favorites-amount-badge">2</span>
+                            <span className="navbar__favorites-amount-badge">{favoritesAmount}</span>
                         </Link>
                     </div>
                 </div>

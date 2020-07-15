@@ -8,12 +8,10 @@ import "./Catalog.css"
 import CatalogItem from "./CatalogItem";
 
 // Component
-const Catalog = () => {
+const Catalog = (props) => {
     return (
         <section className="catalog">
-            <CatalogItem />
-            <CatalogItem />
-            <CatalogItem />
+            {props.countries.map(country => { return <CatalogItem key={country.alpha3Code} country={country}/> })}
         </section>
     )
 }

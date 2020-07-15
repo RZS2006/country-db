@@ -9,7 +9,7 @@ import Search from "./Search";
 import Catalog from "../Catalog/Catalog";
 
 // Component
-const Home = () => {
+const Home = (props) => {
     return (
         <main className="home">
             <div className="container">
@@ -17,9 +17,9 @@ const Home = () => {
                 <div className="home__divider"></div>
                 <div className="home__results-container">
                     <div className="home__results-found-container">
-                        <small>189 results found</small>
+                        <small>{`${props.countries.length} results found`}</small>
                     </div>
-                    <Catalog />
+                    <Catalog countries={props.countries}/>
                 </div>
             </div>
         </main>
