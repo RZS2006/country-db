@@ -9,9 +9,14 @@ import CatalogItem from "./CatalogItem";
 
 // Component
 const Catalog = (props) => {
+    const { countries, toggleFavoriteStatus } = props;
+
     return (
         <section className="catalog">
-            {props.countries.map(country => { return <CatalogItem key={country.alpha3Code} country={country}/> })}
+            {countries.map(country => { return <CatalogItem 
+                                                key={country.alpha3Code} 
+                                                country={country}
+                                                toggleFavoriteStatus={toggleFavoriteStatus} /> })}
         </section>
     )
 }

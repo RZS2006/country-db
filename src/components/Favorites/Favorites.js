@@ -9,7 +9,9 @@ import Banner from "../Banner/Banner";
 import Catalog from "../Catalog/Catalog"
 
 // Component
-const Favorites = () => {
+const Favorites = (props) => {
+    const { countries, toggleFavoriteStatus } = props
+
     return (
         <main className="favorites">
             <Banner />
@@ -18,7 +20,9 @@ const Favorites = () => {
                     <h2 className="favorites__title">Favorites</h2>
                 </div>
                 <div className="favorites__divider"></div>
-                <Catalog />
+                <Catalog 
+                countries={countries}
+                toggleFavoriteStatus={toggleFavoriteStatus} />
             </div>
         </main>
     )

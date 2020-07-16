@@ -4,7 +4,7 @@ export const getCountries = async () => {
     const data = await res.json();
     return data
     } catch(error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -14,6 +14,6 @@ export const getCountryByCode = async (code) => {
     const data = await res.json();
     return data
     } catch(error) {
-        console.log(error)
+        throw new Error(error)
     }
 }

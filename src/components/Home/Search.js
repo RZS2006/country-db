@@ -7,7 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // Component
-const Search = () => {
+const Search = (props) => {
+    const { hideNonFavorites, setHideNonFavorites, hideFavorites, setHideFavorites } = props;
+
     return (
         <section className="search">
             <form className="search__query-container">
@@ -20,11 +22,25 @@ const Search = () => {
             </form>
             <div className="search__filter-container">
                 <label className="search__input-label search__filter-checkbox-label" htmlFor="hide-non-favorites">
-                    <input className="search__filter-checkbox" type="checkbox" name="hide-non-favorites"/>
+                    
+                    <input 
+                    className="search__filter-checkbox" 
+                    type="checkbox" 
+                    name="hide-non-favorites"
+                    checked={hideNonFavorites}
+                    onChange={() => setHideNonFavorites(!hideNonFavorites)} />
+
                     Hide Non-Favorites
                 </label>
                 <label className="search__input-label search__filter-checkbox-label" htmlFor="hide-favorites">
-                    <input className="search__filter-checkbox" type="checkbox" name="hide-favorites"/>
+                    
+                    <input 
+                    className="search__filter-checkbox" 
+                    type="checkbox" 
+                    name="hide-favorites"
+                    checked={hideFavorites}
+                    onChange={() => setHideFavorites(!hideFavorites)} />
+
                     Hide Favorites
                 </label>
             </div>
