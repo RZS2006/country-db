@@ -10,7 +10,9 @@ import Catalog from "../Catalog/Catalog"
 
 // Component
 const Favorites = (props) => {
-    const { countries, toggleFavoriteStatus } = props
+    const { countries } = props;
+
+    const displayedCountries = countries.filter(country => country.favorited);
 
     return (
         <main className="favorites">
@@ -20,9 +22,7 @@ const Favorites = (props) => {
                     <h2 className="favorites__title">Favorites</h2>
                 </div>
                 <div className="favorites__divider"></div>
-                <Catalog 
-                countries={countries}
-                toggleFavoriteStatus={toggleFavoriteStatus} />
+                <Catalog countries={displayedCountries} />
             </div>
         </main>
     )

@@ -22,6 +22,12 @@ const App = () => {
     const [ countries, setCountries ] = useState([]);
 
     useEffect(() => {
+        // const localStorageData = localStorage.getItem("countries");
+        // if (localStorageData) {
+        //     setCountries(JSON.parse(localStorageData));
+        //     return
+        // }
+
         const fetchCountries = async () => {
             try {
             const fetchedCountries = await getCountries();
@@ -33,7 +39,11 @@ const App = () => {
         }
 
         fetchCountries()
-    }, [])
+    }, []);
+
+    // useEffect(() => {
+    //     localStorage.setItem("countries", JSON.stringify(countries))
+    // }, [countries])
 
     const toggleFavoriteStatus = (code) => {
         const newCountries = countries.map(country => {
@@ -52,13 +62,11 @@ const App = () => {
                 <Switch>
 
                     <Route path="/" exact render={() => <Home 
-                                                         countries={countries} 
-                                                         toggleFavoriteStatus={toggleFavoriteStatus} />
+                                                         countries={countries} />
                                                          } />
                                                         
                     <Route path="/favorites" render={() => <Favorites
-                                                            countries={countries} 
-                                                            toggleFavoriteStatus={toggleFavoriteStatus} />
+                                                            countries={countries} />
                                                             } />
 
                     <Route path="/countries/:code" render={() => <Details 

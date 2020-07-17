@@ -8,14 +8,21 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // Component
 const Search = (props) => {
-    const { hideNonFavorites, setHideNonFavorites, hideFavorites, setHideFavorites } = props;
+    const { query, setQuery, hideNonFavorites, setHideNonFavorites, hideFavorites, setHideFavorites } = props;
 
     return (
         <section className="search">
             <form className="search__query-container">
                 <label className="search__input-label search__query-input-label" htmlFor="query">
                     Search for a country
-                    <input className="search__query-input" type="text" name="query"/>
+
+                    <input 
+                    className="search__query-input" 
+                    type="text" 
+                    name="query"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)} />
+
                 </label>
                 <button className="search__query-submit primary" type="submit">Search</button>
                 <button className="search__query-submit secondary" type="submit"><FontAwesomeIcon icon={faSearch} /></button>

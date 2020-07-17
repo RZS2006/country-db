@@ -10,7 +10,9 @@ import Catalog from "../Catalog/Catalog";
 
 // Component
 const Home = (props) => {
-    const { countries, toggleFavoriteStatus } = props;
+    const { countries } = props;
+
+    const [ query, setQuery ] = useState("")
 
     const [ hideNonFavorites, setHideNonFavorites ] = useState(false);
     const [ hideFavorites, setHideFavorites ] = useState(false);
@@ -19,7 +21,7 @@ const Home = (props) => {
 
     useEffect(() => {
         setDisplayedCountries([...countries])
-    }, [countries])
+    }, [])
 
     useEffect(() => {
         let newDisplayedCountries = countries;
@@ -37,11 +39,20 @@ const Home = (props) => {
         // }
     }, [countries, hideNonFavorites, hideFavorites])
 
+    useEffect(() => {
+        let newDisplayedCountries = countries;
+        newDisplayedCountries = newDisplayedCountries.filter(displayedCountry => {
+            return displayedCountry.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+        })
+        setDisplayedCountries(newDisplayedCountries);
+    }, [query])
+
     return (
         <main className="home">
             <div className="container">
 
                 <Search 
+                query={query} setQuery={setQuery}
                 hideNonFavorites={hideNonFavorites} setHideNonFavorites={setHideNonFavorites}
                 hideFavorites={hideFavorites} setHideFavorites={setHideFavorites} />
 
@@ -50,9 +61,7 @@ const Home = (props) => {
                     <div className="home__results-found-container">
                         <small>{`${displayedCountries.length} results found`}</small>
                     </div>
-                    <Catalog 
-                    countries={displayedCountries} 
-                    toggleFavoriteStatus={toggleFavoriteStatus} />
+                    <Catalog countries={displayedCountries} />
                 </div>
             </div>
         </main>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // Component
 const CatalogItem = (props) => {
-    const { country, toggleFavoriteStatus } = props;
+    const { country } = props;
 
     return (
         <Link to={`/countries/${country.alpha3Code}`}>
@@ -18,10 +18,7 @@ const CatalogItem = (props) => {
                 </div>
                 <div className="catalog-item__favorite-status-container">
                     {country.favorited && <small>Favorited</small>}
-                    <span className={`catalog-item__favorite-status-dot ${country.favorited ? "favorited" : "not-favorited"}`}
-                          onClick={(e) => {
-                              e.preventDefault()
-                              toggleFavoriteStatus(country.alpha3Code)}}></span>
+                    <span className={`catalog-item__favorite-status-dot ${country.favorited ? "favorited" : "not-favorited"}`}></span>
                 </div>
             </div>
         </Link>

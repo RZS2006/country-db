@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 // Component
-const DetailsData = () => {
+const DetailsData = (props) => {
+    const { country } = props;
+
     return (
         <div className="details__data">
             <div className="details__data-section names">
@@ -14,11 +16,11 @@ const DetailsData = () => {
                 <div className="details__data-section-content">
                     <div className="details__data-section-entry">
                         <span className="details__entry-key">Name:</span>
-                        <span className="details__entry-value">Germany</span>
+                        <span className="details__entry-value">{country.name}</span>
                     </div>
                     <div className="details__data-section-entry">
                         <span className="details__entry-key">Native Name:</span>
-                        <span className="details__entry-value">Deutschland</span>
+                        <span className="details__entry-value">{country.nativeName}</span>
                     </div>
                 </div>
                 <div className="details__data-section-dropdown">
