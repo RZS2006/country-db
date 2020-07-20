@@ -19,7 +19,7 @@ import { getCountries } from "./api/api"
 // Component
 const App = () => {
     const [ hasError, setHasError ] = useState(false);
-    const [ countries, setCountries ] = useState([]);
+    const [ countries, setCountries ] = useState();
 
     useEffect(() => {
         // const localStorageData = localStorage.getItem("countries");
@@ -54,6 +54,8 @@ const App = () => {
         })
         setCountries(newCountries)
     }
+
+    if (!countries) return null
 
     return (
         <Router>

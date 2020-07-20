@@ -14,12 +14,14 @@ import DetailsData from "./DetailsData";
 const Details = (props) => {
     const { countries, toggleFavoriteStatus } = props;
     const { code } = useParams();
-    const [country, setCountry] = useState({})
+    const [country, setCountry] = useState()
 
     useEffect(() => {
         const country = countries.find(country => country.alpha3Code === code)
         setCountry({...country})
     }, [countries, code])
+
+    if (!country) return null
 
     return (
         <main className="details">

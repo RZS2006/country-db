@@ -138,6 +138,7 @@
     font-size: 1.6rem;
     padding: 0.4rem 1.6rem;
     border-radius: 4rem;
+    margin-left: 0.8rem;
     background-color: var(--grey-primary);
 }
 

@@ -21,7 +21,7 @@ const Home = (props) => {
 
     useEffect(() => {
         setDisplayedCountries([...countries])
-    }, [])
+    }, [countries])
 
     useEffect(() => {
         let newDisplayedCountries = countries;
@@ -45,7 +45,7 @@ const Home = (props) => {
             return displayedCountry.name.toLowerCase().indexOf(query.toLowerCase()) > -1
         })
         setDisplayedCountries(newDisplayedCountries);
-    }, [query])
+    }, [query, countries])
 
     return (
         <main className="home">

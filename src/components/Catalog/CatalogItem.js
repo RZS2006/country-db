@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 // Component
 const CatalogItem = (props) => {
     const { country } = props;
-
     return (
         <Link to={`/countries/${country.alpha3Code}`}>
             <div className="catalog-item">
