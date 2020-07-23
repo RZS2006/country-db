@@ -9,14 +9,21 @@ import CatalogItem from "./CatalogItem";
 
 // Component
 const Catalog = (props) => {
-    const { countries } = props;
+    const { countries, noResultsMessage } = props;
 
     return (
         <section className="catalog">
-            {countries.map(country => { return <CatalogItem 
-                                                key={country.alpha3Code} 
-                                                country={country} /> })}
+            {countries.length > 0 ? countries.map(country => <CatalogItem key={country.alpha3Code} country={country} /> )
+            : <CatalogNoResults message={noResultsMessage}/>}
         </section>
+    )
+}
+
+const CatalogNoResults = (props) => {
+    return (
+        <div className="catalog__no-results-container">
+            <span className="catalog__no-results">{props.message}</span>
+        </div>
     )
 }
 

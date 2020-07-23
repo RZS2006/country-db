@@ -61,7 +61,7 @@ const Home = (props) => {
                     <div className="home__results-found-container">
                         <small>{`${displayedCountries.length} results found`}</small>
                     </div>
-                    <Catalog countries={displayedCountries} />
+                    <Catalog countries={displayedCountries} noResultsMessage="No countries found" />
                 </div>
             </div>
         </main>

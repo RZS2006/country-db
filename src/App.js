@@ -18,6 +18,7 @@ import { getCountries } from "./api/api"
 
 // Component
 const App = () => {
+    const [ isLoading, setIsLoading ] = useState(true)
     const [ hasError, setHasError ] = useState(false);
     const [ countries, setCountries ] = useState();
 
@@ -33,6 +34,7 @@ const App = () => {
             const fetchedCountries = await getCountries();
             const fetchedCountriesWithFavoriteStatus = fetchedCountries.map(country => { return {...country, favorited: false} });
             setCountries(fetchedCountriesWithFavoriteStatus)
+            setIsLoading(false)
             } catch (error) {
                 setHasError(true)
             }
@@ -55,7 +57,13 @@ const App = () => {
         setCountries(newCountries)
     }
 
-    if (!countries) return null
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <span>Loading...</span>
+            </div> 
+        )
+    }
 
     return (
         <Router>
@@ -64,16 +72,19 @@ const App = () => {
                 <Switch>
 
                     <Route path="/" exact render={() => <Home 
-                                                         countries={countries} />
+                                                         countries={countries}
+                                                         isLoading={isLoading} />
                                                          } />
                                                         
                     <Route path="/favorites" render={() => <Favorites
-                                                            countries={countries} />
+                                                            countries={countries}
+                                                            isLoading={isLoading} />
                                                             } />
 
                     <Route path="/countries/:code" render={() => <Details 
                                                                   countries={countries}
-                                                                  toggleFavoriteStatus={toggleFavoriteStatus} />
+                                                                  toggleFavoriteStatus={toggleFavoriteStatus}
+                                                                  isLoading={isLoading} />
                                                                   } />
 
                     <Route render={() => <Redirect to="/" />} />   

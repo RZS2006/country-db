@@ -20,6 +20,7 @@ const Search = (props) => {
                     className="search__query-input" 
                     type="text" 
                     name="query"
+                    autoComplete="off"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)} />
 

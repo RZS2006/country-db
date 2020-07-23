@@ -52,6 +52,17 @@ a {
   color: inherit;
 }
 
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loading-container span {
+  font-size: 2rem;
+}
+
 /* Media Queries */
 @media screen and (max-width: 600px) {
   :root {

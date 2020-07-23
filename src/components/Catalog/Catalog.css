@@ -9,6 +9,17 @@
     flex-direction: column;
 }
 
+.catalog__no-results-container {
+    background-color: var(--grey-primary);
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+}
+
+.catalog__no-results {
+    font-size: 1.8rem;
+    font-weight: var(--fw-medium);
+}
+
 /* CatalogItem.js */
 .catalog-item {
     margin-bottom: 1.2rem;

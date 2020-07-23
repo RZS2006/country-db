@@ -22,7 +22,7 @@ const Favorites = (props) => {
                     <h2 className="favorites__title">Favorites</h2>
                 </div>
                 <div className="favorites__divider"></div>
-                <Catalog countries={displayedCountries} />
+                <Catalog countries={displayedCountries} noResultsMessage="No countries favorited" />
             </div>
         </main>
     )

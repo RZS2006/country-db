@@ -2,7 +2,7 @@
 
 // Imports
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
 import "./Details.css"
 
@@ -14,12 +14,19 @@ import DetailsData from "./DetailsData";
 const Details = (props) => {
     const { countries, toggleFavoriteStatus } = props;
     const { code } = useParams();
-    const [country, setCountry] = useState()
+    const [ country, setCountry ] = useState()
+    const [ redirect, setRedirect ] = useState(false)
 
     useEffect(() => {
-        const country = countries.find(country => country.alpha3Code === code)
-        setCountry({...country})
+        const displayedCountry = countries.find(country => country.alpha3Code === code)
+        if (!displayedCountry) {
+            setRedirect(true)
+        } else {
+            setCountry({...displayedCountry})
+        }
     }, [countries, code])
+
+    if (redirect) return <Redirect to="/" />
 
     if (!country) return null
 
