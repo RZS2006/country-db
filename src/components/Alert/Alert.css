@@ -1,0 +1,20 @@
+.alert {
+    background-color: rgb(235, 38, 38);
+    padding: 1.2rem 0;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.alert svg {
+    font-size: 2rem;
+}
+
+.alert__text {
+    margin-left: 0.8rem;
+}
+
+.alert__text strong {
+    font-weight: var(--fw-medium);
+    margin-left: 0.6rem;
+    font-size: 1.6rem;
+}

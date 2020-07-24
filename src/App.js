@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Favorites from "./components/Favorites/Favorites";
 import Details from "./components/Details/Details";
+import Alert from "./components/Alert/Alert";
 
 import { getCountries } from "./api/api"
 
@@ -36,7 +37,9 @@ const App = () => {
             setCountries(fetchedCountriesWithFavoriteStatus)
             setIsLoading(false)
             } catch (error) {
+                setCountries([])
                 setHasError(true)
+                setIsLoading(false)
             }
         }
 
@@ -69,6 +72,7 @@ const App = () => {
         <Router>
             <div className="app">
                 <Navbar countries={countries}/>
+                {hasError && <Alert />}
                 <Switch>
 
                     <Route path="/" exact render={() => <Home 
