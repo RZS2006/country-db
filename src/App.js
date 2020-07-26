@@ -1,7 +1,7 @@
 // --- CountryDB - App.js ---
 
 // Imports
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,47 +19,61 @@ import { getCountries } from "./api/api"
 
 // Component
 const App = () => {
-    const [ isLoading, setIsLoading ] = useState(true)
-    const [ hasError, setHasError ] = useState(false);
+
+    // State
     const [ countries, setCountries ] = useState();
+    const [ isLoading, setIsLoading ] = useState(true);
+    const [ hasError, setHasError ] = useState(false);
 
+    // Side Effects
     useEffect(() => {
-        // const localStorageData = localStorage.getItem("countries");
-        // if (localStorageData) {
-        //     setCountries(JSON.parse(localStorageData));
-        //     return
-        // }
-
         const fetchCountries = async () => {
             try {
-            const fetchedCountries = await getCountries();
-            const fetchedCountriesWithFavoriteStatus = fetchedCountries.map(country => { return {...country, favorited: false} });
-            setCountries(fetchedCountriesWithFavoriteStatus)
-            setIsLoading(false)
+                const countries = await getCountries();
+                const formattedCountries = countries.map(country => { return {...country, favorited: false, id: country.alpha3Code }});
+
+                const localStorageData = JSON.parse(localStorage.getItem("countries"));
+                if (localStorageData) {
+                    setCountries(localStorageData)
+                } else {
+                    setCountries(formattedCountries)
+                }
+
+                setIsLoading(false)
             } catch (error) {
                 setCountries([])
-                setHasError(true)
                 setIsLoading(false)
+                setHasError(true)
+                console.log(error)
             }
         }
 
         fetchCountries()
     }, []);
 
-    // useEffect(() => {
-    //     localStorage.setItem("countries", JSON.stringify(countries))
-    // }, [countries])
+    const isInitialMount = useRef(true);
 
-    const toggleFavoriteStatus = (code) => {
-        const newCountries = countries.map(country => {
-            if (country.alpha3Code === code) {
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            localStorage.setItem("countries", JSON.stringify(countries))
+        }
+    }, [countries])
+
+    // Functions
+    const toggleFavoriteStatus = (id) => {
+        const updatedCountries = countries.map(country => {
+            if (country.id === id) {
                 country.favorited = !country.favorited
             }
             return country
         })
-        setCountries(newCountries)
+
+        setCountries(updatedCountries)
     }
 
+    // Render
     if (isLoading) {
         return (
             <div className="loading-container">
@@ -71,25 +85,19 @@ const App = () => {
     return (
         <Router>
             <div className="app">
-                <Navbar countries={countries}/>
+                <Navbar countries={countries} />
                 {hasError && <Alert />}
                 <Switch>
 
                     <Route path="/" exact render={() => <Home 
-                                                         countries={countries}
-                                                         isLoading={isLoading} />
-                                                         } />
+                                                         countries={countries} />} />
                                                         
                     <Route path="/favorites" render={() => <Favorites
-                                                            countries={countries}
-                                                            isLoading={isLoading} />
-                                                            } />
+                                                            countries={countries} />} />
 
                     <Route path="/countries/:code" render={() => <Details 
                                                                   countries={countries}
-                                                                  toggleFavoriteStatus={toggleFavoriteStatus}
-                                                                  isLoading={isLoading} />
-                                                                  } />
+                                                                  toggleFavoriteStatus={toggleFavoriteStatus} />} />
 
                     <Route render={() => <Redirect to="/" />} />   
                                                               

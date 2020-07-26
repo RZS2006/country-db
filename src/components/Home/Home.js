@@ -9,9 +9,9 @@ import Search from "./Search";
 import Catalog from "../Catalog/Catalog";
 
 // Component
-const Home = (props) => {
-    const { countries } = props;
-
+const Home = ({countries}) => {
+    
+    // State
     const [ query, setQuery ] = useState("")
 
     const [ hideNonFavorites, setHideNonFavorites ] = useState(false);
@@ -24,19 +24,13 @@ const Home = (props) => {
     }, [countries])
 
     useEffect(() => {
-        let newDisplayedCountries = countries;
-        // if(hideNonFavorites || hideFavorites) {
+        setDisplayedCountries([...countries])
             if(hideNonFavorites) {
-                newDisplayedCountries = newDisplayedCountries.filter(displayedCountry => displayedCountry.favorited);
+                setDisplayedCountries(prevState => prevState.filter(displayedCountry => displayedCountry.favorited))
             }
             if(hideFavorites) {
-                newDisplayedCountries = newDisplayedCountries.filter(displayedCountry => !displayedCountry.favorited);
+                setDisplayedCountries(prevState => prevState.filter(displayedCountry => !displayedCountry.favorited))
             }
-            setDisplayedCountries(newDisplayedCountries);
-
-        // } else {
-            // setDisplayedCountries([...countries])
-        // }
     }, [countries, hideNonFavorites, hideFavorites])
 
     useEffect(() => {
@@ -45,8 +39,9 @@ const Home = (props) => {
             return displayedCountry.name.toLowerCase().indexOf(query.toLowerCase()) > -1
         })
         setDisplayedCountries(newDisplayedCountries);
-    }, [query, countries])
+    }, [countries, query])
 
+    // Render
     return (
         <main className="home">
             <div className="container">

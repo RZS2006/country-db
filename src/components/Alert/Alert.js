@@ -5,7 +5,7 @@ import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import "./Alert.css"
+import "./Alert.css" 
 
 // Component
 const Alert = () => {

@@ -7,13 +7,14 @@ import { Link } from "react-router-dom";
 import './Navbar.css';
 
 // Component
-const Navbar = (props) => {
-    const favoritesAmount = props.countries.filter(country => country.favorited).length;
+const Navbar = ({countries}) => {
+    const favoritedCountriesAmount = countries.filter(country => country.favorited).length;
+
     return (
         <nav className="navbar">
             <div className="container">
                 <div className="navbar__flex-container">
-                    <div className="navbar__logo-container">   
+                    <div className="navbar__logo-container">
                         <Link to="/">
                             <h1 className="navbar__logo">CountryDB</h1>
                         </Link>
@@ -21,7 +22,7 @@ const Navbar = (props) => {
                     <div className="navbar__favorites-container">
                         <Link to="/favorites">
                             <small>Favorites</small>
-                            <span className="navbar__favorites-amount-badge">{favoritesAmount}</span>
+                            <span className="navbar__favorites-amount-badge">{favoritedCountriesAmount}</span>
                         </Link>
                     </div>
                 </div>
