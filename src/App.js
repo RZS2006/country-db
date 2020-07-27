@@ -14,6 +14,7 @@ import Home from "./components/Home/Home";
 import Favorites from "./components/Favorites/Favorites";
 import Details from "./components/Details/Details";
 import Alert from "./components/Alert/Alert";
+import Loading from "./components/Loading/Loading";
 
 import { getCountries } from "./api/api"
 
@@ -22,6 +23,7 @@ const App = () => {
 
     // State
     const [ countries, setCountries ] = useState();
+    const [ favoritedCountries, setFavoritedCountries ] = useState();
     const [ isLoading, setIsLoading ] = useState(true);
     const [ hasError, setHasError ] = useState(false);
 
@@ -30,18 +32,33 @@ const App = () => {
         const fetchCountries = async () => {
             try {
                 const countries = await getCountries();
-                const formattedCountries = countries.map(country => { return {...country, favorited: false, id: country.alpha3Code }});
+                const countriesWithId = countries.map(country => { 
+                    return {...country, id: country.alpha3Code }
+                });
 
-                const localStorageData = JSON.parse(localStorage.getItem("countries"));
+                const localStorageData = JSON.parse(localStorage.getItem("favoritedCountries"));
                 if (localStorageData) {
-                    setCountries(localStorageData)
+                    const countriesWithFavorited = countriesWithId.map(country => {
+                        return {...country, favorited: localStorageData[country.id]}
+                    })
+                    setCountries(countriesWithFavorited)
+                    setFavoritedCountries({...localStorageData})
                 } else {
-                    setCountries(formattedCountries)
+                    const favoritedCountriesObject = {};
+                    countriesWithId.forEach(country => {
+                        return favoritedCountriesObject[country.id] = false;
+                    })
+                    const countriesWithFavorited = countriesWithId.map(country => {
+                        return {...country, favorited: favoritedCountriesObject[country.id]}
+                    })
+                    setCountries(countriesWithFavorited)
+                    setFavoritedCountries({...favoritedCountriesObject})
                 }
 
                 setIsLoading(false)
             } catch (error) {
                 setCountries([])
+                setFavoritedCountries({})
                 setIsLoading(false)
                 setHasError(true)
                 console.log(error)
@@ -57,12 +74,16 @@ const App = () => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            localStorage.setItem("countries", JSON.stringify(countries))
+            localStorage.setItem("favoritedCountries", JSON.stringify(favoritedCountries))
         }
-    }, [countries])
+    }, [favoritedCountries])
 
     // Functions
     const toggleFavoriteStatus = (id) => {
+        const updatedFavoritedCountries = {...favoritedCountries};
+        updatedFavoritedCountries[id] = !updatedFavoritedCountries[id]
+        setFavoritedCountries(updatedFavoritedCountries)
+
         const updatedCountries = countries.map(country => {
             if (country.id === id) {
                 country.favorited = !country.favorited
@@ -75,11 +96,7 @@ const App = () => {
 
     // Render
     if (isLoading) {
-        return (
-            <div className="loading-container">
-                <span>Loading...</span>
-            </div> 
-        )
+        return <Loading />
     }
 
     return (
@@ -89,15 +106,12 @@ const App = () => {
                 {hasError && <Alert />}
                 <Switch>
 
-                    <Route path="/" exact render={() => <Home 
-                                                         countries={countries} />} />
+                    <Route path="/" exact render={() => <Home countries={countries} />} />
                                                         
-                    <Route path="/favorites" render={() => <Favorites
-                                                            countries={countries} />} />
+                    <Route path="/favorites" render={() => <Favorites countries={countries} />} />
 
-                    <Route path="/countries/:code" render={() => <Details 
-                                                                  countries={countries}
-                                                                  toggleFavoriteStatus={toggleFavoriteStatus} />} />
+                    <Route path="/countries/:code" render={() => <Details countries={countries}
+                                                                          toggleFavoriteStatus={toggleFavoriteStatus} />} />
 
                     <Route render={() => <Redirect to="/" />} />   
                                                               

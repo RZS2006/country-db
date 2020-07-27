@@ -19,6 +19,7 @@ const Home = ({countries}) => {
 
     const [ displayedCountries, setDisplayedCountries ] = useState([]);
 
+    // Side Effects
     useEffect(() => {
         setDisplayedCountries([...countries])
     }, [countries])
@@ -31,15 +32,12 @@ const Home = ({countries}) => {
             if(hideFavorites) {
                 setDisplayedCountries(prevState => prevState.filter(displayedCountry => !displayedCountry.favorited))
             }
-    }, [countries, hideNonFavorites, hideFavorites])
-
-    useEffect(() => {
-        let newDisplayedCountries = countries;
-        newDisplayedCountries = newDisplayedCountries.filter(displayedCountry => {
-            return displayedCountry.name.toLowerCase().indexOf(query.toLowerCase()) > -1
-        })
-        setDisplayedCountries(newDisplayedCountries);
-    }, [countries, query])
+            setDisplayedCountries(prevState => {
+                return prevState.filter(displayedCountry => {
+                    return displayedCountry.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+                })
+            })
+    }, [countries, query, hideNonFavorites, hideFavorites])
 
     // Render
     return (
