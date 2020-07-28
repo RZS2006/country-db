@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 // Component
-const DetailsData = (props) => {
-    const { country } = props;
+const DetailsData = ({country}) => {
 
+    // State
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
+    // Render
     if (!country) return null
 
     return (

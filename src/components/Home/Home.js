@@ -2,14 +2,16 @@
 
 // Imports
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
-import "./Home.css"
+import "./Home.css";
 
 import Search from "./Search";
 import Catalog from "../Catalog/Catalog";
 
 // Component
 const Home = ({countries}) => {
+    let history = useHistory()
     
     // State
     const [ query, setQuery ] = useState("")
@@ -39,13 +41,22 @@ const Home = ({countries}) => {
             })
     }, [countries, query, hideNonFavorites, hideFavorites])
 
+    // Functions
+    const search = (e) => {
+        e.preventDefault()
+        if (query && displayedCountries.length > 0) {
+            const countryID = displayedCountries[0].id;
+            history.push(`/countries/${countryID}`)
+        }
+    }
+
     // Render
     return (
         <main className="home">
             <div className="container">
 
                 <Search 
-                query={query} setQuery={setQuery}
+                query={query} setQuery={setQuery} search={search}
                 hideNonFavorites={hideNonFavorites} setHideNonFavorites={setHideNonFavorites}
                 hideFavorites={hideFavorites} setHideFavorites={setHideFavorites} />
 

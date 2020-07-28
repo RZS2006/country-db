@@ -1,15 +1,17 @@
 // --- CountryDB - Navbar.js ---
 
 // Imports
-import React from 'react'
+import React from 'react';
 import { Link } from "react-router-dom";
 
 import './Navbar.css';
 
 // Component
 const Navbar = ({countries}) => {
+
     const favoritedCountriesAmount = countries.filter(country => country.favorited).length;
 
+    // Render
     return (
         <nav className="navbar">
             <div className="container">

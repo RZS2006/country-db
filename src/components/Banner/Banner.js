@@ -10,6 +10,8 @@ import "./Banner.css";
 
 // Component
 const Banner = () => {
+
+    // Render
     return (
         <section className="banner">
             <div className="container">

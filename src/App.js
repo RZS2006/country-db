@@ -16,7 +16,7 @@ import Details from "./components/Details/Details";
 import Alert from "./components/Alert/Alert";
 import Loading from "./components/Loading/Loading";
 
-import { getCountries } from "./api/api"
+import { getCountries } from "./api/api";
 
 // Component
 const App = () => {

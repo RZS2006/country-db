@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // Component
-const Search = (props) => {
-    const { query, setQuery, hideNonFavorites, setHideNonFavorites, hideFavorites, setHideFavorites } = props;
+const Search = ({query, setQuery, search, hideNonFavorites, setHideNonFavorites, hideFavorites, setHideFavorites}) => {
 
+    // Render
     return (
         <section className="search">
             <form className="search__query-container">
@@ -25,8 +25,8 @@ const Search = (props) => {
                     onChange={(e) => setQuery(e.target.value)} />
 
                 </label>
-                <button className="search__query-submit primary" type="submit">Search</button>
-                <button className="search__query-submit secondary" type="submit"><FontAwesomeIcon icon={faSearch} /></button>
+                <button className="search__query-submit primary" type="submit" onClick={(e) => search(e)}>Search</button>
+                <button className="search__query-submit secondary" type="submit" onClick={(e) => search(e)}><FontAwesomeIcon icon={faSearch} /></button>
             </form>
             <div className="search__filter-container">
                 <label className="search__input-label search__filter-checkbox-label" htmlFor="hide-non-favorites">

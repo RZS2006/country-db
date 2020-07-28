@@ -11,12 +11,14 @@ import DetailsHeader from "./DetailsHeader";
 import DetailsData from "./DetailsData";
 
 // Component
-const Details = (props) => {
-    const { countries, toggleFavoriteStatus } = props;
+const Details = ({countries, toggleFavoriteStatus}) => {
+
+    // State
     const { code } = useParams();
     const [ country, setCountry ] = useState()
     const [ redirect, setRedirect ] = useState(false)
 
+    // Side Effects
     useEffect(() => {
         const displayedCountry = countries.find(country => country.alpha3Code === code)
         if (!displayedCountry) {
@@ -26,6 +28,7 @@ const Details = (props) => {
         }
     }, [countries, code])
 
+    // Render
     if (redirect) return <Redirect to="/" />
 
     if (!country) return null

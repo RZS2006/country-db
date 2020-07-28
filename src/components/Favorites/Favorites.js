@@ -9,11 +9,11 @@ import Banner from "../Banner/Banner";
 import Catalog from "../Catalog/Catalog"
 
 // Component
-const Favorites = (props) => {
-    const { countries } = props;
+const Favorites = ({countries}) => {
 
     const displayedCountries = countries.filter(country => country.favorited);
 
+    // Render
     return (
         <main className="favorites">
             <Banner />

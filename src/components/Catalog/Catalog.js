@@ -8,9 +8,9 @@ import "./Catalog.css"
 import CatalogItem from "./CatalogItem";
 
 // Component
-const Catalog = (props) => {
-    const { countries, noResultsMessage } = props;
+const Catalog = ({countries, noResultsMessage}) => {
 
+    // Render
     return (
         <section className="catalog">
             {countries.length > 0 ? countries.map(country => <CatalogItem key={country.alpha3Code} country={country} /> )

@@ -5,6 +5,11 @@
     color: white;
 }
 
+.alert__flex-container {
+    display: flex;
+    align-items: center;
+}
+
 .alert svg {
     font-size: 2rem;
 }
