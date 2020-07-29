@@ -34,14 +34,32 @@ const Home = ({countries}) => {
             if(hideFavorites) {
                 setDisplayedCountries(prevState => prevState.filter(displayedCountry => !displayedCountry.favorited))
             }
-            setDisplayedCountries(prevState => {
-                return prevState.filter(displayedCountry => {
-                    return displayedCountry.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+            if(query && query.trim().length > 0) {
+                const queryValue = query.trim().toLowerCase();
+
+                setDisplayedCountries(prevState => {
+                    return prevState.filter(displayedCountry => {
+                        return displayedCountry.name.toLowerCase().includes(queryValue)
+                    }).sort((countryA, countryB) => {
+                        return getRelevancy(countryB.name.toLowerCase(), queryValue) - getRelevancy(countryA.name.toLowerCase(), queryValue)
+                    })
                 })
-            })
+            }
     }, [countries, query, hideNonFavorites, hideFavorites])
 
     // Functions
+    const getRelevancy = (item, query) => {
+        if(query === item) {
+            return 2;
+        } else if(item.startsWith(query)) {
+            return 1;
+        } else if (item.includes(query)) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+
     const search = (e) => {
         e.preventDefault()
         if (query && displayedCountries.length > 0) {

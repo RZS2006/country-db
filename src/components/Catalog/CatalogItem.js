@@ -25,4 +25,4 @@ const CatalogItem = ({country}) => {
     )
 }
 
-export default CatalogItem
+export default React.memo(CatalogItem)

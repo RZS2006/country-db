@@ -27,4 +27,4 @@ const CatalogNoResults = (props) => {
     )
 }
 
-export default Catalog
+export default React.memo(Catalog)
