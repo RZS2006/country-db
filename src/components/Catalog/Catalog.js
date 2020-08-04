@@ -13,7 +13,7 @@ const Catalog = ({countries, noResultsMessage}) => {
     // Render
     return (
         <section className="catalog">
-            {countries.length > 0 ? countries.map(country => <CatalogItem key={country.alpha3Code} country={country} /> )
+            {countries.length > 0 ? countries.map(country => <CatalogItem key={country.id} country={country} /> )
             : <CatalogNoResults message={noResultsMessage}/>}
         </section>
     )
