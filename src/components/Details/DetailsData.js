@@ -1,18 +1,75 @@
 // --- CountryDB - DetailsData.js ---
 
 // Imports
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+
+import { getCountryById, getCountryByLanguage } from "../../api/api";
 
 // Component
 const DetailsData = ({country}) => {
 
     // State
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [ dropdownOpen, setDropdownOpen ] = useState(false);
+    const [ borderCountries, setBorderCountries ] = useState([]);
+    const [ languages, setLanguages ] = useState({});
+
+    // Side Effects
+    useEffect(() => {
+        const fetchBorderCountry = async (borderCountryId) => {
+            try {
+                const fetchedBorderCountry = await getCountryById(borderCountryId);
+                setBorderCountries(prevState => [...prevState, fetchedBorderCountry.name])
+            } catch (error) {
+                console.log(error)
+                setBorderCountries(country.borders)
+            }
+        }
+
+        country.borders.forEach(borderCountryId => {
+            const e = async () => {
+                await fetchBorderCountry(borderCountryId)
+            }
+            e()
+        })
+    }, [country])
+
+    useEffect(() => {
+        const obj = {}; 
+        const fetchLanguage = async (langaugeId) => {
+            try {
+                if (langaugeId !== "br") {  
+                    const fetchedLanguage = await getCountryByLanguage(langaugeId);
+                    for (let i = 0; i < fetchedLanguage[0].languages.length; i++) {
+                        if (fetchedLanguage[0].languages[i].iso639_1 === langaugeId) {
+                            console.log(langaugeId)
+                            obj[langaugeId] = fetchedLanguage[0].languages[i].name;
+                            console.log(obj)
+                            // setLanguages(prevState => { return {...prevState, [languageId]: fetchedLanguage[0].languages[i].name} })
+                            setLanguages({...obj})
+                        }
+                    }
+                } else {   
+                    obj[langaugeId] = "Brazilian Portuguese"; 
+                    setLanguages({...obj})
+                    // setLanguages(prevState => { return {...prevState, [languageId]: "Brazilian Portuguese"} })
+                }
+            } catch (error) {
+                setLanguages(Object.keys(country.translations))
+                console.log(error)
+            }
+        }
+
+        Object.keys(country.translations).forEach(langaugeId => {
+            const e = async () => {
+                await fetchLanguage(langaugeId)
+            }
+            e()
+        })
+    }, [country])
 
     // Render
-    if (!country) return null
 
     return (
         <div className="details__data">
@@ -38,7 +95,7 @@ const DetailsData = ({country}) => {
                         <div className="details__dropdown-panel-content">
                             {Object.keys(country.translations).map((key, index) => {
                                 return (
-                                    <DataEntry key={index} entryKey={key} entryValue={country.translations[key]}/>
+                                    <DataEntry key={index} entryKey={languages[key]} entryValue={country.translations[key]}/>
                                 )
                             })}
                         </div>
@@ -51,15 +108,13 @@ const DetailsData = ({country}) => {
                     <DataEntry entryKey="Capital" entryValue={country.capital}/>
                     <DataEntry entryKey="Region" entryValue={country.region}/>
                     <DataEntry entryKey="Subregion" entryValue={country.subregion}/> 
-                    <DataEntry entryKey="Land Area" entryValue={country.area.toLocaleString()}/>
+                    <DataEntry entryKey="Land Area" entryValue={`${country.area.toLocaleString()} km2`}/>
                     <DataEntry entryKey="Population" entryValue={country.population.toLocaleString()}/>
-                    <DataMultipleEntry entryKey="Land Borders" entryData={country.borders}>
-                            {country.borders.map((border, index) => {
-                                return (
-                                    <Chip key={index} primary={border}/>
-                                )
-                            })}
-                    </DataMultipleEntry>
+                    {borderCountries && <DataMultipleEntry entryKey="Land Borders" entryData={country.borders}>
+                        {country.borders.map((border, index) => {
+                            return <Chip key={index} primary={borderCountries[index]}/>
+                        })}
+                    </DataMultipleEntry>}
                     <DataEntry entryKey="Latitude/Longitude" entryValue={`${country.latlng[0]}, ${country.latlng[1]}`}/>
                 </div> 
             </div>
