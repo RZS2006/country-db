@@ -1,64 +1,67 @@
 /* --- CountryDB - index.css --- */
 
 /* Imports */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 /* Variables */
 :root {
-  --green-primary: #00812C;
-  --green-dark--hover: #016623;
-  --grey-dark--text: #6b6b6b;
-  --grey-primary: #E5E5E5;
-  --grey-light--bg: #EFEFEF;
-  --black-light--hover: #272727;
+	--green-primary: #00812c;
+	--green-primary--hover: #016623;
+	--grey-400: #575757;
+	--grey-300--text: #6b6b6b;
+	--grey-200: #e5e5e5;
+	--grey-100--bg: #efefef;
+	--black--hover: #272727;
+	--red-primary: #da1f1f;
 
-  --fw-regular: 400;
-  --fw-medium: 500;
+	--fw-regular: 400;
+	--fw-medium: 500;
 
-  --transition: 200ms;
+	--transition: 200ms;
 
-  --font-size: 62.5%;
+	--font-size: 62.5%;
 }
 
 /* Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: var(--font-size);
+	font-size: var(--font-size);
 }
 
 body {
-  background-color: var(--grey-light--bg);
+	background-color: var(--grey-100--bg);
 }
 
-body, button, input {
-  font-family: 'Poppins', sans-serif;
+body,
+button,
+input {
+	font-family: "Poppins", sans-serif;
 }
 
 .container {
-  width: 80%;
-  max-width: 1512px;
-  height: inherit;
-  margin: 0 auto;
+	width: 80%;
+	max-width: 1152px;
+	height: inherit;
+	margin: 0 auto;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
-  :root {
-    --font-size: 55%;
-  }
+	:root {
+		--font-size: 55%;
+	}
 
-  .container {
-    width: 90%;
-  }
+	.container {
+		width: 90%;
+	}
 }

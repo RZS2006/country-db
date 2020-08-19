@@ -2,14 +2,8 @@
 
 /* Styles */
 .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .loading span {
-    font-size: 2rem;
-    font-weight:  var(--fw-medium);
-  }
-  
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}

@@ -13,7 +13,7 @@
 .favorites__divider {
     width: 100%;
     height: 2px;
-    background-color: var(--grey-primary);
+    background-color: var(--grey-200);
 }
 
 /* Media Queries */

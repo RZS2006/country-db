@@ -44,12 +44,12 @@
 }
 
 .navbar__favorites-container:hover small, .navbar__logo-container:hover .navbar__logo {
-    color: var(--grey-light--bg);
+    color: var(--grey-100--bg);
     transition: var(--transition);
 }
 
 .navbar__favorites-container:hover .navbar__favorites-amount-badge {
-    background-color: var(--grey-light--bg);
+    background-color: var(--grey-100--bg);
     transition: var(--transition);
 }
 

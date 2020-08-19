@@ -1,12 +1,12 @@
 // --- CountryDB - App.js ---
 
 // Imports
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
 } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -20,105 +20,127 @@ import { getCountries } from "./api/api";
 
 // Component
 const App = () => {
+	// State
+	const [countries, setCountries] = useState();
+	const [favoritedCountries, setFavoritedCountries] = useState();
+	const [isLoading, setIsLoading] = useState(true);
+	const [hasError, setHasError] = useState(false);
 
-    // State
-    const [ countries, setCountries ] = useState();
-    const [ favoritedCountries, setFavoritedCountries ] = useState();
-    const [ isLoading, setIsLoading ] = useState(true);
-    const [ hasError, setHasError ] = useState(false);
+	// Side Effects
+	useEffect(() => {
+		const fetchCountries = async () => {
+			try {
+				const countries = await getCountries();
+				const countriesWithId = countries.map((country) => {
+					return { ...country, id: country.alpha3Code };
+				});
 
-    // Side Effects
-    useEffect(() => {
-        const fetchCountries = async () => {
-            try {
-                const countries = await getCountries();
-                const countriesWithId = countries.map(country => { 
-                    return {...country, id: country.alpha3Code }
-                });
+				const localStorageData = JSON.parse(
+					localStorage.getItem("favoritedCountries")
+				);
+				if (localStorageData) {
+					const countriesWithFavorited = countriesWithId.map((country) => {
+						return {
+							...country,
+							favorited: localStorageData[country.id],
+						};
+					});
+					setCountries(countriesWithFavorited);
+					setFavoritedCountries({ ...localStorageData });
+				} else {
+					const favoritedCountriesObject = {};
+					countriesWithId.forEach((country) => {
+						return (favoritedCountriesObject[country.id] = false);
+					});
+					const countriesWithFavorited = countriesWithId.map((country) => {
+						return {
+							...country,
+							favorited: favoritedCountriesObject[country.id],
+						};
+					});
+					setCountries(countriesWithFavorited);
+					setFavoritedCountries({ ...favoritedCountriesObject });
+				}
 
-                const localStorageData = JSON.parse(localStorage.getItem("favoritedCountries"));
-                if (localStorageData) {
-                    const countriesWithFavorited = countriesWithId.map(country => {
-                        return {...country, favorited: localStorageData[country.id]}
-                    })
-                    setCountries(countriesWithFavorited)
-                    setFavoritedCountries({...localStorageData})
-                } else {
-                    const favoritedCountriesObject = {};
-                    countriesWithId.forEach(country => {
-                        return favoritedCountriesObject[country.id] = false;
-                    })
-                    const countriesWithFavorited = countriesWithId.map(country => {
-                        return {...country, favorited: favoritedCountriesObject[country.id]}
-                    })
-                    setCountries(countriesWithFavorited)
-                    setFavoritedCountries({...favoritedCountriesObject})
-                }
+				setIsLoading(false);
+			} catch (error) {
+				setCountries([]);
+				setFavoritedCountries({});
+				setIsLoading(false);
+				setHasError(true);
+				console.log(error);
+			}
+		};
 
-                setIsLoading(false)
-            } catch (error) {
-                setCountries([])
-                setFavoritedCountries({})
-                setIsLoading(false)
-                setHasError(true)
-                console.log(error)
-            }
-        }
+		fetchCountries();
+	}, []);
 
-        fetchCountries()
-    }, []);
+	const isInitialMount = useRef(true);
 
-    const isInitialMount = useRef(true);
+	useEffect(() => {
+		if (isInitialMount.current) {
+			isInitialMount.current = false;
+		} else {
+			localStorage.setItem(
+				"favoritedCountries",
+				JSON.stringify(favoritedCountries)
+			);
+		}
+	}, [favoritedCountries]);
 
-    useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {
-            localStorage.setItem("favoritedCountries", JSON.stringify(favoritedCountries))
-        }
-    }, [favoritedCountries])
+	// Functions
+	const toggleFavoriteStatus = (id) => {
+		const updatedFavoritedCountries = { ...favoritedCountries };
+		updatedFavoritedCountries[id] = !updatedFavoritedCountries[id];
+		setFavoritedCountries(updatedFavoritedCountries);
 
-    // Functions
-    const toggleFavoriteStatus = (id) => {
-        const updatedFavoritedCountries = {...favoritedCountries};
-        updatedFavoritedCountries[id] = !updatedFavoritedCountries[id]
-        setFavoritedCountries(updatedFavoritedCountries)
+		const updatedCountries = countries.map((country) => {
+			if (country.id === id) {
+				country.favorited = !country.favorited;
+			}
+			return country;
+		});
 
-        const updatedCountries = countries.map(country => {
-            if (country.id === id) {
-                country.favorited = !country.favorited
-            }
-            return country
-        })
+		setCountries(updatedCountries);
+	};
 
-        setCountries(updatedCountries)
-    }
+	// Render
+	if (isLoading) {
+		return <Loading />;
+	}
 
-    // Render
-    if (isLoading) {
-        return <Loading />
-    }
+	return (
+		<Router>
+			<div className="app">
+				<Navbar countries={countries} />
+				{hasError && <Alert />}
+				<Switch>
+					<Route
+						path="/"
+						exact
+						render={() => <Home countries={countries} />}
+					/>
 
-    return (
-        <Router>
-            <div className="app">
-                <Navbar countries={countries} />
-                {hasError && <Alert />}
-                <Switch>
+					<Route
+						path="/favorites"
+						render={() => <Favorites countries={countries} />}
+					/>
 
-                    <Route path="/" exact render={() => <Home countries={countries} />} />
-                                                        
-                    <Route path="/favorites" render={() => <Favorites countries={countries} />} />
+					<Route
+						path="/countries/:code"
+						render={() => (
+							<Details
+								countries={countries}
+								toggleFavoriteStatus={toggleFavoriteStatus}
+							/>
+						)}
+					/>
 
-                    <Route path="/countries/:code" render={() => <Details countries={countries}
-                                                                          toggleFavoriteStatus={toggleFavoriteStatus} />} />
+					<Route render={() => <Redirect to="/" />} />
+				</Switch>
+			</div>
+		</Router>
+	);
+};
 
-                    <Route render={() => <Redirect to="/" />} />   
-                                                              
-                </Switch>
-            </div>
-        </Router>
-    ) 
-}
-
-export default App
+export default App;

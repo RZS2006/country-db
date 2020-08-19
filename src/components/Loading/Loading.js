@@ -1,19 +1,20 @@
 // --- CountryDB - Loading.js ---
 
 // Imports
-import React from 'react';
+import React from "react";
 
 import "./Loading.css";
 
+import loader from "../../assets/Rolling-1s-170px.gif";
+
 // Component
 const Loading = () => {
+	// Render
+	return (
+		<div className="loading">
+			<img src={loader} alt="loading" />
+		</div>
+	);
+};
 
-    // Render
-    return (
-        <div className="loading">
-            <span>Loading...</span>
-        </div>
-    )
-}
-
-export default Loading
+export default Loading;

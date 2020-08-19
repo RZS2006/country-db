@@ -2,7 +2,7 @@
 
 /* Styles */
 .banner {
-    background-color: var(--grey-primary);
+    background-color: var(--grey-200);
     padding: 1.6rem 0;
 }
 
@@ -18,7 +18,7 @@
     transition: margin-left var(--transition);
 }
 .banner__link-container:hover {
-    color: var(--black-light--hover);
+    color: var(--black--hover);
     transition: var(--transition);
 }
 

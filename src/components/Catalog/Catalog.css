@@ -10,7 +10,7 @@
 }
 
 .catalog__no-results-container {
-    background-color: var(--grey-primary);
+    background-color: var(--grey-200);
     padding: 0.6rem 1rem;
     border-radius: 4px;
 }
@@ -58,7 +58,7 @@
 .catalog-item__native-name {
     font-size: 1.6rem;
     margin-left: 1rem;
-    color: var(--grey-dark--text);
+    color: var(--grey-300--text);
 }
 
 .catalog-item__favorite-status-container {
