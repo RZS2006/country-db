@@ -3,28 +3,32 @@
 // Imports
 import React from 'react';
 
-import "./Catalog.css"
+import './Catalog.css';
 
-import CatalogItem from "./CatalogItem";
+import CatalogItem from './CatalogItem';
 
 // Component
-const Catalog = ({countries, noResultsMessage}) => {
+const Catalog = ({ countries, noResultsMessage }) => {
+	// Render
+	return (
+		<section className="catalog">
+			{countries.length > 0 ? (
+				countries.map(country => (
+					<CatalogItem key={country.id} country={country} />
+				))
+			) : (
+				<CatalogNoResults message={noResultsMessage} />
+			)}
+		</section>
+	);
+};
 
-    // Render
-    return (
-        <section className="catalog">
-            {countries.length > 0 ? countries.map(country => <CatalogItem key={country.id} country={country} /> )
-            : <CatalogNoResults message={noResultsMessage}/>}
-        </section>
-    )
-}
+const CatalogNoResults = props => {
+	return (
+		<div className="catalog__no-results-container">
+			<span className="catalog__no-results">{props.message}</span>
+		</div>
+	);
+};
 
-const CatalogNoResults = (props) => {
-    return (
-        <div className="catalog__no-results-container">
-            <span className="catalog__no-results">{props.message}</span>
-        </div>
-    )
-}
-
-export default React.memo(Catalog)
+export default React.memo(Catalog);

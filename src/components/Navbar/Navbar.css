@@ -1,66 +1,77 @@
-/* --- CountryDB - navbar.css --- */
+/* --- CountryDB - Navbar.css --- */
 
 /* Styles */
 .navbar {
-    height: 72px;
-    background-color: var(--green-primary);
+	height: 72px;
+	background-color: var(--green-primary);
 }
 
 .navbar__flex-container {
-    height: inherit;
-    display: flex;
-    align-items: center;
+	height: inherit;
+	display: flex;
+	align-items: center;
 }
 
 .navbar__logo {
-    color: white;
-    font-size: 2.6rem;
-    font-weight: var(--fw-medium);
+	color: white;
+	font-size: 2.6rem;
+	font-weight: var(--fw-medium);
 }
 
 .navbar__favorites-container {
-    margin-left: auto;
+	margin-left: auto;
 }
 
 .navbar__favorites-container small {
-    color: white;
-    font-size: 2rem;
-    font-weight: var(--fw-medium);
+	color: white;
+	font-size: 2rem;
+	font-weight: var(--fw-medium);
 }
 
 .navbar__favorites-amount-badge {
-    font-size: 2rem;
-    font-weight: var(--fw-medium);
-    margin-left: 8px;
-    color: var(--green-primary);
-    background-color: white;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    min-width: 30px;
-    padding: 0 0.4rem;
-    border-radius: 5px;
+	font-size: 2rem;
+	font-weight: var(--fw-medium);
+	margin-left: 8px;
+	color: var(--green-primary);
+	background-color: white;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 30px;
+	min-width: 30px;
+	padding: 0 0.4rem;
+	border-radius: 6px;
 }
 
-.navbar__favorites-container:hover small, .navbar__logo-container:hover .navbar__logo {
-    color: var(--grey-100--bg);
-    transition: var(--transition);
+.navbar__favorites-container:hover small,
+.navbar__logo-container:hover .navbar__logo {
+	color: var(--grey-100--bg);
+	transition: var(--transition);
 }
 
 .navbar__favorites-container:hover .navbar__favorites-amount-badge {
-    background-color: var(--grey-100--bg);
-    transition: var(--transition);
+	background-color: var(--grey-100--bg);
+	transition: var(--transition);
 }
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
-    .navbar {
-        height: 60px;
-    }
+	.navbar {
+		height: 54px;
+	}
 
-    .navbar__favorites-amount-badge {
-        height: 25px;
-        min-width: 25px;
-    }
+	.navbar__logo {
+		font-size: 2.2rem;
+	}
+
+	.navbar__favorites-container small {
+		font-size: 1.8rem;
+	}
+
+	.navbar__favorites-amount-badge {
+		font-size: 1.8rem;
+		margin-left: 6px;
+		height: 25px;
+		min-width: 25px;
+	}
 }

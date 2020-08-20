@@ -2,27 +2,27 @@
 
 /* Styles */
 .banner {
-    background-color: var(--grey-200);
-    padding: 1.6rem 0;
+	background-color: var(--grey-200);
+	padding: 1.6rem 0;
 }
 
 .banner__link-container {
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
+	font-size: 1.6rem;
+	display: flex;
+	align-items: center;
 }
 
 .banner__link-container small {
-    font-size: 1.6rem;
-    margin-left: 4px;
-    transition: margin-left var(--transition);
+	font-size: 1.6rem;
+	margin-left: 4px;
+	transition: margin-left var(--transition);
 }
 .banner__link-container:hover {
-    color: var(--black--hover);
-    transition: var(--transition);
+	color: var(--black--hover);
+	transition: var(--transition);
 }
 
 .banner__link-container:hover small {
-    margin-left: 6px;
-    transition: var(--transition);
+	margin-left: 6px;
+	transition: var(--transition);
 }

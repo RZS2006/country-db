@@ -4,153 +4,150 @@
 
 /* Catalog.js */
 .catalog {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .catalog__no-results-container {
-    background-color: var(--grey-200);
-    padding: 0.6rem 1rem;
-    border-radius: 4px;
+	background-color: var(--grey-200);
+	padding: 0.6rem 1rem;
+	border-radius: 4px;
 }
 
 .catalog__no-results {
-    font-size: 1.8rem;
-    font-weight: var(--fw-medium);
+	font-size: 1.8rem;
+	font-weight: var(--fw-medium);
 }
 
 /* CatalogItem.js */
 .catalog-item {
-    margin-bottom: 1.2rem;
-    width: 100%;
-    min-height: 9rem;
-    background-color: white;
-    display: flex;
-    align-items: center;
+	margin-bottom: 1.2rem;
+	width: 100%;
+	min-height: 9rem;
+	background-color: white;
+	display: flex;
+	align-items: center;
 }
 
 .catalog-item__flag {
-    height: 100%;
-    max-height: 9rem;
+	height: 100%;
+	max-height: 9rem;
 }
 
 .catalog-item__name-container {
-    display: flex;
-    align-items: center;
-    margin-left: 2rem;
-    padding: 1rem 0;
+	display: flex;
+	align-items: center;
+	margin-left: 2rem;
+	padding: 1rem 0;
 }
 
 .catalog-item__name {
-    line-height: 1.2;
-    font-weight: var(--fw-medium);
+	line-height: 1.2;
+	font-weight: var(--fw-medium);
 }
 
 .catalog-item__name.short {
-    font-size: 3.2rem;
+	font-size: 3.2rem;
 }
 
 .catalog-item__name.long {
-    font-size: 2.8rem;
+	font-size: 2.8rem;
 }
 
 .catalog-item__native-name {
-    font-size: 1.6rem;
-    margin-left: 1rem;
-    color: var(--grey-300--text);
+	font-size: 1.6rem;
+	margin-left: 1rem;
+	color: var(--grey-300--text);
 }
 
 .catalog-item__favorite-status-container {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	margin-right: 2rem;
 }
 
 .catalog-item__favorite-status-container small {
-    font-size: 1.8rem;
-    color: var(--green-primary);
+	font-size: 1.8rem;
+	color: var(--green-primary);
 }
 
 .catalog-item__favorite-status-dot {
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    margin-left: 1rem;
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	margin-left: 1rem;
 }
 
 .catalog-item__favorite-status-dot.favorited {
-    background-color: var(--green-primary);
+	background-color: var(--green-primary);
 }
 
 .catalog-item__favorite-status-dot.not-favorited {
-    background-color: gray;
+	background-color: gray;
 }
 
 /* Media Queries */
 
 /* 900px */
 @media screen and (max-width: 920px) {
+	/* CatalogItem.js */
+	.catalog-item {
+		min-height: 8rem;
+	}
 
-    /* CatalogItem.js */
-    .catalog-item {
-        min-height: 8rem;
-    }
+	.catalog-item__name.short {
+		font-size: 2.8rem;
+	}
 
-    .catalog-item__name.short {
-        font-size: 2.8rem;
-    }
-    
-    .catalog-item__name.long {
-        font-size: 2.6rem;
-    }
+	.catalog-item__name.long {
+		font-size: 2.6rem;
+	}
 
-    .catalog-item__native-name {
-        font-size: 1.4rem;
-    }
+	.catalog-item__native-name {
+		font-size: 1.4rem;
+	}
 
-    .catalog-item__favorite-status-container small {
-        display: none;
-    }
+	.catalog-item__favorite-status-container small {
+		display: none;
+	}
 
-    .catalog-item__favorite-status-dot {
-        margin-left: 2rem;
-    }
+	.catalog-item__favorite-status-dot {
+		margin-left: 2rem;
+	}
 }
 
 /* 720px */
 @media screen and (max-width: 720px) {
+	/* CatalogItem.js */
+	.catalog-item {
+		min-height: 7rem;
+	}
 
-    /* CatalogItem.js */
-    .catalog-item {
-        min-height: 7rem;
-    }
+	.catalog-item__native-name {
+		display: none;
+	}
 
-    .catalog-item__native-name {
-        display: none;
-    }
+	.catalog-item__name.short {
+		font-size: 2.6rem;
+	}
 
-    .catalog-item__name.short {
-        font-size: 2.6rem;
-    }
-    
-    .catalog-item__name.long {
-        font-size: 2.4rem;
-    }
+	.catalog-item__name.long {
+		font-size: 2.4rem;
+	}
 
-    .catalog-item__favorite-status-dot {
-        width: 15px;
-        height: 15px;
-    }
+	.catalog-item__favorite-status-dot {
+		width: 15px;
+		height: 15px;
+	}
 }
 
 /* 400px */
 @media screen and (max-width: 400px) {
-
-    /* CatalogItem.js */
-    .catalog-item__flag {
-        display: none;
-    }
+	/* CatalogItem.js */
+	.catalog-item__flag {
+		display: none;
+	}
 }

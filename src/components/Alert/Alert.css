@@ -1,25 +1,35 @@
+/* --- CountryDB - Alert.css --- */
+
+/* Styles */
 .alert {
-    background-color: rgb(235, 38, 38);
-    padding: 1.2rem 0;
-    font-size: 1.4rem;
-    color: white;
+	background-color: var(--red-primary);
+	padding: 1.2rem 0;
+	font-size: 1.6rem;
+	color: white;
 }
 
 .alert__flex-container {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .alert svg {
-    font-size: 2rem;
+	font-size: 2.4rem;
 }
 
 .alert__text {
-    margin-left: 0.8rem;
+	margin-left: 0.8rem;
 }
 
-.alert__text strong {
-    font-weight: var(--fw-medium);
-    margin-left: 0.6rem;
-    font-size: 1.6rem;
+.alert__text-bold {
+	font-weight: var(--fw-medium);
+	margin-left: 0.8rem;
+	font-size: 1.7rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+	.alert__text {
+		display: none;
+	}
 }
