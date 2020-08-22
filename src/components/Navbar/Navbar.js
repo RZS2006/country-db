@@ -8,20 +8,18 @@ import "./Navbar.css";
 
 // Component
 const Navbar = ({ countries }) => {
-	const favoritedCountriesAmount = countries.filter(
-		(country) => country.favorited
-	).length;
+	const favoritedCountriesAmount = countries.filter((country) => country.favorited).length;
 
 	// Render
 	return (
 		<nav className="navbar">
 			<div className="container">
 				<div className="navbar__flex-container">
-					<div className="navbar__logo-container">
-						<Link to="/">
-							<h1 className="navbar__logo">CountryDB</h1>
-						</Link>
-					</div>
+
+					<Link to="/">
+						<h1 className="navbar__logo">CountryDB</h1>
+					</Link>
+
 					<div className="navbar__favorites-container">
 						<Link to="/favorites">
 							<small>Favorites</small>
@@ -30,6 +28,7 @@ const Navbar = ({ countries }) => {
 							</span>
 						</Link>
 					</div>
+
 				</div>
 			</div>
 		</nav>

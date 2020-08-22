@@ -4,6 +4,9 @@
 .navbar {
 	height: 72px;
 	background-color: var(--green-primary);
+	position: sticky;
+	top: 0;
+	left: 0;
 }
 
 .navbar__flex-container {
@@ -44,13 +47,13 @@
 }
 
 .navbar__favorites-container:hover small,
-.navbar__logo-container:hover .navbar__logo {
-	color: var(--grey-100--bg);
+.navbar__logo:hover {
+	color: var(--grey-200);
 	transition: var(--transition);
 }
 
 .navbar__favorites-container:hover .navbar__favorites-amount-badge {
-	background-color: var(--grey-100--bg);
+	background-color: var(--grey-200);
 	transition: var(--transition);
 }
 

@@ -1,6 +1,6 @@
 /* --- CountryDB - index.css --- */
 
-/* Imports */
+/* Font Import */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 /* Variables */
@@ -48,6 +48,7 @@ input {
 	max-width: 1152px;
 	height: inherit;
 	margin: 0 auto;
+	transition: width var(--transition);
 }
 
 a {

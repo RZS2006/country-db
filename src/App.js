@@ -20,11 +20,12 @@ import { getCountries } from "./api/api";
 
 // Component
 const App = () => {
+	
 	// State
-	const [countries, setCountries] = useState();
-	const [favoritedCountries, setFavoritedCountries] = useState();
-	const [isLoading, setIsLoading] = useState(true);
-	const [hasError, setHasError] = useState(false);
+	const [ countries, setCountries ] = useState();
+	const [ favoritedCountries, setFavoritedCountries ] = useState();
+	const [ isLoading, setIsLoading ] = useState(true);
+	const [ hasError, setHasError ] = useState(false);
 
 	// Side Effects
 	useEffect(() => {
