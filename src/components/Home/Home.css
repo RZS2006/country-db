@@ -95,6 +95,7 @@
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
+	
 	/* Search.js */
 	.search {
 		padding: 2rem 0;

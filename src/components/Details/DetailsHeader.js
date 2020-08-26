@@ -19,7 +19,7 @@ const DetailsHeader = ({ country, toggleFavoriteStatus }) => {
 					</small>
 				</h2>
 			</div>
-			<div
+			<span
 				className={`details__favorite-status-container ${
 					country.favorited ? 'favorited' : 'not-favorited'
 				}`}
@@ -30,7 +30,7 @@ const DetailsHeader = ({ country, toggleFavoriteStatus }) => {
 					{country.favorited ? 'Favorited' : 'Add to Favorites'}
 				</small>
 				<span className="details__favorite-status-dot"></span>
-			</div>
+			</span>
 		</div>
 	);
 };

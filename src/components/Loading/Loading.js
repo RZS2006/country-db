@@ -9,6 +9,7 @@ import loader from "../../assets/Rolling-1s-170px.gif";
 
 // Component
 const Loading = () => {
+	
 	// Render
 	return (
 		<div className="loading">

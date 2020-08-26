@@ -18,6 +18,8 @@ import Loading from "./components/Loading/Loading";
 
 import { getCountries } from "./api/api";
 
+import { CountriesContext } from "./contexts/CountriesContext";
+
 // Component
 const App = () => {
 	
@@ -111,36 +113,38 @@ const App = () => {
 	}
 
 	return (
-		<Router>
-			<div className="app">
-				<Navbar countries={countries} />
-				{hasError && <Alert />}
-				<Switch>
-					<Route
-						path="/"
-						exact
-						render={() => <Home countries={countries} />}
-					/>
+		<CountriesContext.Provider value={countries}>
+			<Router>
+				<div className="app">
+					<Navbar countries={countries} />
+					{hasError && <Alert />}
+					<Switch>
+						<Route
+							path="/"
+							exact
+							render={() => <Home countries={countries} />}
+						/>
 
-					<Route
-						path="/favorites"
-						render={() => <Favorites countries={countries} />}
-					/>
+						<Route
+							path="/favorites"
+							render={() => <Favorites countries={countries} />}
+						/>
 
-					<Route
-						path="/countries/:code"
-						render={() => (
-							<Details
-								countries={countries}
-								toggleFavoriteStatus={toggleFavoriteStatus}
-							/>
-						)}
-					/>
+						<Route
+							path="/countries/:code"
+							render={() => (
+								<Details
+									countries={countries}
+									toggleFavoriteStatus={toggleFavoriteStatus}
+								/>
+							)}
+						/>
 
-					<Route render={() => <Redirect to="/" />} />
-				</Switch>
-			</div>
-		</Router>
+						<Route render={() => <Redirect to="/" />} />
+					</Switch>
+				</div>
+			</Router>
+		</CountriesContext.Provider>
 	);
 };
 

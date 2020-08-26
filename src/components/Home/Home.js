@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import "./Home.css";
 
 import Search from "./Search";
-const Catalog = React.lazy(() => import("../Catalog/Catalog"));
+import Catalog from "../Catalog/Catalog"
 
 // Component
 const Home = ({ countries }) => {
@@ -98,12 +98,10 @@ const Home = ({ countries }) => {
 					<div className="home__results-found-container">
 						<small>{`${displayedCountries.length} results found`}</small>
 					</div>
-					<React.Suspense fallback={<span>Loading...</span>}>
-						<Catalog
-							countries={displayedCountries}
-							noResultsMessage="No countries found"
-						/>
-					</React.Suspense>
+					<Catalog
+						countries={displayedCountries}
+						noResultsMessage="No countries found"
+					/>
 				</div>
 			</div>
 		</main>

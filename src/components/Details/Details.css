@@ -34,8 +34,16 @@
 
 .details__favorite-status-container {
 	margin-left: auto;
-	display: flex;
+	display: inline-flex;
 	align-items: center;
+	padding: 0.6rem 1.2rem;
+	border-radius: 6px;
+	background-color: var(--grey-200);
+}
+
+.details__favorite-status-container:hover {
+	background-color: var(--grey-200);
+	transition: var(--transition);
 }
 
 .details__favorite-status-container small {
@@ -106,6 +114,9 @@
 
 .details__data-section-entry {
 	margin-top: 1rem;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .details__data-section-entry:first-child {
@@ -114,10 +125,10 @@
 
 .details__entry-key {
 	font-size: 1.6rem;
+	margin-right: 0.6rem;
 }
 
 .details__entry-value {
-	margin-left: 0.6rem;
 	font-size: 2rem;
 	font-weight: var(--fw-medium);
 }
@@ -130,7 +141,7 @@
 	align-items: center;
 }
 
-.details__data-section-dropdown span {
+.details__dropdown-button > span {
 	margin-right: auto;
 }
 
@@ -165,9 +176,13 @@
 	font-size: 1.6rem;
 	padding: 0.4rem 1.6rem;
 	border-radius: 4rem;
-	margin-left: 0.8rem;
+	margin-right: 0.8rem;
 	margin-top: 0.4rem;
 	background-color: var(--grey-200);
+}
+
+.details__entry-value-chip:last-child {
+	margin-right: 0;
 }
 
 .details__entry-value-chip small {
@@ -199,7 +214,7 @@
 	}
 
 	.details__favorite-status-container {
-		margin-top: 2rem;
+		margin-top: 1rem;
 	}
 
 	.details__favorite-status-dot {
