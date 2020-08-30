@@ -1,4 +1,4 @@
-// --- CountryDB - Navbar.js ---
+// --- CountryDB - Navbar.js --- Final
 
 // Imports
 import React, { useContext } from "react";
@@ -10,7 +10,11 @@ import { CountriesContext } from "../../contexts/CountriesContext";
 
 // Component
 const Navbar = () => {
+
+	// Context
 	const countries = useContext(CountriesContext)
+
+	// State
 	const favoritedCountriesAmount = countries.filter((country) => country.favorited).length;
 
 	// Render

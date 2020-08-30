@@ -1,3 +1,6 @@
+// --- CountryDB - api.js --- Final
+
+// Exports
 export const getCountries = async () => {
 	try {
 		const res = await fetch("https://restcountries.eu/rest/v2/all");
@@ -20,9 +23,7 @@ export const getCountryById = async (id) => {
 
 export const getCountryByLanguage = async (language) => {
 	try {
-		const res = await fetch(
-			`https://restcountries.eu/rest/v2/lang/${language}`
-		);
+		const res = await fetch(`https://restcountries.eu/rest/v2/lang/${language}`);
 		const data = await res.json();
 		return data;
 	} catch (error) {

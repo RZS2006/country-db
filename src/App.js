@@ -79,7 +79,6 @@ const App = () => {
 	}, []);
 
 	const isInitialMount = useRef(true);
-
 	useEffect(() => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
@@ -116,28 +115,23 @@ const App = () => {
 		<CountriesContext.Provider value={countries}>
 			<Router>
 				<div className="app">
-					<Navbar countries={countries} />
+					<Navbar />
 					{hasError && <Alert />}
 					<Switch>
 						<Route
 							path="/"
 							exact
-							render={() => <Home countries={countries} />}
+							render={() => <Home />}
 						/>
 
 						<Route
 							path="/favorites"
-							render={() => <Favorites countries={countries} />}
+							render={() => <Favorites />}
 						/>
 
 						<Route
 							path="/countries/:code"
-							render={() => (
-								<Details
-									countries={countries}
-									toggleFavoriteStatus={toggleFavoriteStatus}
-								/>
-							)}
+							render={() => <Details toggleFavoriteStatus={toggleFavoriteStatus}/>}
 						/>
 
 						<Route render={() => <Redirect to="/" />} />

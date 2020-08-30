@@ -1,7 +1,7 @@
 // --- CountryDB - Details.js ---
 
 // Imports
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect, useParams } from "react-router-dom";
 
 import "./Details.css";
@@ -10,8 +10,14 @@ import Banner from "../Banner/Banner";
 import DetailsHeader from "./DetailsHeader";
 import DetailsData from "./DetailsData";
 
+import { CountriesContext } from "../../contexts/CountriesContext";
+
 // Component
-const Details = ({ countries, toggleFavoriteStatus }) => {
+const Details = ({toggleFavoriteStatus}) => {
+
+	// Context
+	const countries = useContext(CountriesContext)
+
 	// State
 	const { code } = useParams();
 	const [country, setCountry] = useState();
@@ -38,17 +44,21 @@ const Details = ({ countries, toggleFavoriteStatus }) => {
 		<main className="details">
 			<Banner />
 			<div className="container">
+
 				<DetailsHeader
 					country={country}
 					toggleFavoriteStatus={toggleFavoriteStatus}
 				/>
+
 				<div className="details__divider"></div>
 				<img
 					className="details__flag"
 					src={country.flag}
 					alt={`Flag of ${country.name}`}
 				/>
+				
 				<DetailsData country={country} />
+
 			</div>
 		</main>
 	);

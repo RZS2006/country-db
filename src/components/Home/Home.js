@@ -1,7 +1,7 @@
 // --- CountryDB - Home.js ---
 
 // Imports
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import "./Home.css";
@@ -9,8 +9,12 @@ import "./Home.css";
 import Search from "./Search";
 import Catalog from "../Catalog/Catalog"
 
+import { CountriesContext } from "../../contexts/CountriesContext";
+
 // Component
-const Home = ({ countries }) => {
+const Home = () => {
+
+	const countries = useContext(CountriesContext)
 	let history = useHistory();
 
 	// State

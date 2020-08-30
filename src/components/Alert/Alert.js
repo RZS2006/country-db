@@ -1,4 +1,4 @@
-// --- CountryDB - Alert.js ---
+// --- CountryDB - Alert.js --- Final
 
 // Imports
 import React from "react";
@@ -9,18 +9,17 @@ import "./Alert.css";
 
 // Component
 const Alert = () => {
+
 	// Render
 	return (
 		<section className="alert">
 			<div className="container">
 				<div className="alert__flex-container">
+
 					<FontAwesomeIcon icon={faExclamationCircle} />
-					<span className="alert__text">
-						CountryDB ran into a problem:
-					</span>
-					<span className="alert__text-bold">
-						Unable to load countries
-					</span>
+					<span className="alert__text">CountryDB ran into a problem:</span>
+					<span className="alert__text-bold">Unable to load countries</span>
+
 				</div>
 			</div>
 		</section>

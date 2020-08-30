@@ -1,4 +1,4 @@
-// --- CountryDB - Banner.js ---
+// --- CountryDB - Banner.js --- Final
 
 // Imports
 import React from 'react';
@@ -10,16 +10,19 @@ import './Banner.css';
 
 // Component
 const Banner = () => {
+
 	// Render
 	return (
 		<section className="banner">
 			<div className="container">
+
 				<Link to="/">
 					<div className="banner__link-container">
 						<FontAwesomeIcon icon={faChevronLeft} />
 						<small>Back to Catalog</small>
 					</div>
 				</Link>
+				
 			</div>
 		</section>
 	);

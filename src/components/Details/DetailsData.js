@@ -74,11 +74,17 @@ const DetailsData = ({ country }) => {
 			<div className="details__data-section names">
 				<div className="details__data-section-header">Names</div>
 				<div className="details__data-section-content">
+
+					{/* Name */}
 					<DataEntry entryKey="Name" entryValue={country.name} />
+
+					{/* Native Name */}
 					<DataEntry
 						entryKey="Native Name"
 						entryValue={country.nativeName}
 					/>
+
+					{/* Alternative Names */}
 					<DataMultipleEntry
 						entryKey="Alternative Names"
 						entryData={country.altSpellings}>
@@ -87,15 +93,13 @@ const DetailsData = ({ country }) => {
 						})}
 					</DataMultipleEntry>
 				</div>
+
+				{/* Translations */}
 				<div
-					className={`details__data-section-dropdown ${
-						dropdownOpen ? 'open' : 'closed'
-					}`}>
+					className={`details__data-section-dropdown ${dropdownOpen ? 'open' : 'closed'}`}>
 					<div
 						className="details__dropdown-button"
-						onClick={() => {
-							setDropdownOpen(prevState => !prevState);
-						}}>
+						onClick={() => setDropdownOpen(prevState => !prevState)}>
 						<span>Translations</span>
 						<FontAwesomeIcon icon={faChevronDown} />
 					</div>
@@ -117,14 +121,23 @@ const DetailsData = ({ country }) => {
 			<div className="details__data-section geography">
 				<div className="details__data-section-header">Geography</div>
 				<div className="details__data-section-content">
+
+					{/* Capital */}
 					<DataEntry entryKey="Capital" entryValue={country.capital} />
+
+					{/* Region */}
 					<DataEntry entryKey="Region" entryValue={country.region} />
+
+					{/* Subregion */}
 					<DataEntry entryKey="Subregion" entryValue={country.subregion} />
-					<DataEntry entryKey="Land Area" entryValue={country.area} />
-					<DataEntry
-						entryKey="Population"
-						entryValue={country.population}
-					/>
+
+					{/* Land Area */}
+					<DataEntry entryKey="Land Area" entryValue={country.area ? `${country.area.toLocaleString()} km2` : country.area} />
+
+					{/* Population */}
+					<DataEntry entryKey="Population" entryValue={country.population ? country.population.toLocaleString() : country.population}/>
+					
+					{/* Land Borders */}
 					{borderCountries && (
 						<DataMultipleEntry
 							entryKey="Land Borders"
@@ -136,15 +149,16 @@ const DetailsData = ({ country }) => {
 							})}
 						</DataMultipleEntry>
 					)}
-					<DataEntry
-						entryKey="Latitude/Longitude"
-						entryValue={`${country.latlng[0]}, ${country.latlng[1]}`}
-					/>
+
+					{/* Latitude/Longtude */}
+					<DataEntry entryKey="Latitude/Longitude" entryValue={country.latlng.length > 0 ? `${country.latlng[0]}, ${country.latlng[1]}` : null} />
 				</div>
 			</div>
 			<div className="details__data-section miscellaneous">
 				<div className="details__data-section-header">Miscellaneous</div>
 				<div className="details__data-section-content">
+
+					{/* Languages */}
 					<DataMultipleEntry
 						entryKey="Languages"
 						entryData={country.languages}>
@@ -158,6 +172,8 @@ const DetailsData = ({ country }) => {
 							);
 						})}
 					</DataMultipleEntry>
+
+					{/* Currencies */}
 					<DataMultipleEntry
 						entryKey="Currencies"
 						entryData={country.currencies}>
@@ -171,6 +187,8 @@ const DetailsData = ({ country }) => {
 							);
 						})}
 					</DataMultipleEntry>
+
+					{/* Time Zones */}
 					<DataMultipleEntry
 						entryKey="Time Zones"
 						entryData={country.timezones}>
@@ -178,7 +196,11 @@ const DetailsData = ({ country }) => {
 							return <Chip key={index} primary={timezone} />;
 						})}
 					</DataMultipleEntry>
+
+					{/* Demonym */}
 					<DataEntry entryKey="Demonym" entryValue={country.demonym} />
+
+					{/* Internet TLD */}
 					<DataMultipleEntry
 						entryKey="Internet TLD"
 						entryData={country.topLevelDomain}>
@@ -186,6 +208,8 @@ const DetailsData = ({ country }) => {
 							return <Chip key={index} primary={tld} />;
 						})}
 					</DataMultipleEntry>
+
+					{/* Unions */}
 					<DataMultipleEntry
 						entryKey="Unions"
 						entryData={country.regionalBlocs}>
@@ -199,11 +223,17 @@ const DetailsData = ({ country }) => {
 							);
 						})}
 					</DataMultipleEntry>
+
+					{/* Calling Codes */}
 					<DataMultipleEntry
 						entryKey="Calling Codes"
 						entryData={country.callingCodes}>
 						{country.callingCodes.map((callingCode, index) => {
-							return <Chip key={index} primary={`+${callingCode}`} />;
+							if (callingCode !== "") {
+								return <Chip key={index} primary={`+${callingCode}`} />;
+							} else {
+								return "-"
+							}
 						})}
 					</DataMultipleEntry>
 				</div>
@@ -211,9 +241,17 @@ const DetailsData = ({ country }) => {
 			<div className="details__data-section codes">
 				<div className="details__data-section-header">Codes</div>
 				<div className="details__data-section-content">
+
+					{/* Alpha 2 */}
 					<DataEntry entryKey="Alpha 2" entryValue={country.alpha2Code} />
+
+					{/* Alpha 3 */}
 					<DataEntry entryKey="Alpha 3" entryValue={country.alpha3Code} />
+
+					{/* Numeric */}
 					<DataEntry entryKey="Numeric" entryValue={country.numericCode} />
+
+					{/* CIOC */}
 					<DataEntry entryKey="CIOC" entryValue={country.cioc} />
 				</div>
 			</div>
