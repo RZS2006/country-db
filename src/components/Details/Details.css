@@ -23,7 +23,7 @@
 }
 
 .details__name.long {
-	font-size: 3.6rem;
+	font-size: 3.2rem;
 }
 
 .details__native-name {
@@ -164,7 +164,7 @@
 }
 
 .details__data-section-dropdown.open .details__dropdown-panel {
-	max-height: 420px;
+	max-height: 620px;
 }
 
 .details__entry-value.multiple {
@@ -210,9 +210,9 @@
 	}
 
 	.details__name.long {
-		font-size: 3rem;
+		font-size: 2.8rem;
 	}
-
+	
 	.details__favorite-status-container {
 		margin-top: 1rem;
 	}
