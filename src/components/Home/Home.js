@@ -1,24 +1,23 @@
 // --- CountryDB - Home.js ---
 
 // Imports
-import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import "./Home.css";
+import './Home.css';
 
-import Search from "./Search";
-import Catalog from "../Catalog/Catalog"
+import Search from './Search';
+import Catalog from '../Catalog/Catalog';
 
-import { CountriesContext } from "../../contexts/CountriesContext";
+import { CountriesContext } from '../../contexts/CountriesContext';
 
 // Component
 const Home = () => {
-
-	const countries = useContext(CountriesContext)
-	let history = useHistory();
+	const countries = useContext(CountriesContext);
+	const navigate = useNavigate();
 
 	// State
-	const [query, setQuery] = useState("");
+	const [query, setQuery] = useState('');
 
 	const [hideNonFavorites, setHideNonFavorites] = useState(false);
 	const [hideFavorites, setHideFavorites] = useState(false);
@@ -34,12 +33,16 @@ const Home = () => {
 		setDisplayedCountries([...countries]);
 		if (hideNonFavorites) {
 			setDisplayedCountries((prevState) =>
-				prevState.filter((displayedCountry) => displayedCountry.favorited)
+				prevState.filter(
+					(displayedCountry) => displayedCountry.favorited
+				)
 			);
 		}
 		if (hideFavorites) {
 			setDisplayedCountries((prevState) =>
-				prevState.filter((displayedCountry) => !displayedCountry.favorited)
+				prevState.filter(
+					(displayedCountry) => !displayedCountry.favorited
+				)
 			);
 		}
 		if (query && query.trim().length > 0) {
@@ -47,28 +50,37 @@ const Home = () => {
 
 			setDisplayedCountries((prevState) => {
 				return prevState
-					.filter((displayedCountry) => {
-						return displayedCountry.name
-							.toLowerCase()
-							.includes(queryValue);
+					.filter(({ name: { common: countryName } }) => {
+						return countryName.toLowerCase().includes(queryValue);
 					})
-					.sort((countryA, countryB) => {
-						return (
-							getRelevancy(countryB.name.toLowerCase(), queryValue) -
-							getRelevancy(countryA.name.toLowerCase(), queryValue)
-						);
-					});
+					.sort(
+						(
+							{ name: { common: countryAName } },
+							{ name: { common: countryBName } }
+						) => {
+							return (
+								getRelevancy(
+									countryBName.toLowerCase(),
+									queryValue
+								) -
+								getRelevancy(
+									countryAName.toLowerCase(),
+									queryValue
+								)
+							);
+						}
+					);
 			});
 		}
 	}, [countries, query, hideNonFavorites, hideFavorites]);
 
 	// Functions
-	const getRelevancy = (item, query) => {
-		if (query === item) {
+	const getRelevancy = (target, query) => {
+		if (query === target) {
 			return 2;
-		} else if (item.startsWith(query)) {
+		} else if (target.startsWith(query)) {
 			return 1;
-		} else if (item.includes(query)) {
+		} else if (target.includes(query)) {
 			return 0;
 		} else {
 			return -1;
@@ -78,8 +90,8 @@ const Home = () => {
 	const search = (e) => {
 		e.preventDefault();
 		if (query && displayedCountries.length > 0) {
-			const countryID = displayedCountries[0].id;
-			history.push(`/countries/${countryID}`);
+			const countryId = displayedCountries[0].id;
+			navigate(`/countries/${countryId}`);
 		}
 	};
 

@@ -1,53 +1,54 @@
 // --- CountryDB - App.js ---
 
 // Imports
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import {
 	BrowserRouter as Router,
-	Switch,
+	Routes,
 	Route,
-	Redirect,
-} from "react-router-dom";
+	Navigate,
+} from 'react-router-dom';
 
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import Favorites from "./components/Favorites/Favorites";
-import Details from "./components/Details/Details";
-import Alert from "./components/Alert/Alert";
-import Loading from "./components/Loading/Loading";
+import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
+import Favorites from './components/Favorites/Favorites';
+import Details from './components/Details/Details';
+import Alert from './components/Alert/Alert';
+import Loading from './components/Loading/Loading';
 
-import { getCountries } from "./api/api";
+import { getCountries } from './api/api';
 
-import { CountriesContext } from "./contexts/CountriesContext";
+import { CountriesContext } from './contexts/CountriesContext';
 
 // Component
 const App = () => {
-	
 	// State
-	const [ countries, setCountries ] = useState();
-	const [ favoritedCountries, setFavoritedCountries ] = useState();
-	const [ isLoading, setIsLoading ] = useState(true);
-	const [ hasError, setHasError ] = useState(false);
+	const [countries, setCountries] = useState();
+	const [favoritedCountries, setFavoritedCountries] = useState();
+	const [isLoading, setIsLoading] = useState(true);
+	const [hasError, setHasError] = useState(false);
 
 	// Side Effects
 	useEffect(() => {
 		const fetchCountries = async () => {
 			try {
 				const countries = await getCountries();
-				const countriesWithId = countries.map((country) => {
-					return { ...country, id: country.alpha3Code };
-				});
+				const countriesWithId = countries.map((country) => ({
+					...country,
+					id: country.cca3,
+				}));
 
 				const localStorageData = JSON.parse(
-					localStorage.getItem("favoritedCountries")
+					localStorage.getItem('favoritedCountries')
 				);
 				if (localStorageData) {
-					const countriesWithFavorited = countriesWithId.map((country) => {
-						return {
+					const countriesWithFavorited = countriesWithId.map(
+						(country) => ({
 							...country,
 							favorited: localStorageData[country.id],
-						};
-					});
+						})
+					);
+
 					setCountries(countriesWithFavorited);
 					setFavoritedCountries({ ...localStorageData });
 				} else {
@@ -55,14 +56,16 @@ const App = () => {
 					countriesWithId.forEach((country) => {
 						return (favoritedCountriesObject[country.id] = false);
 					});
-					const countriesWithFavorited = countriesWithId.map((country) => {
-						return {
+
+					const countriesWithFavorited = countriesWithId.map(
+						(country) => ({
 							...country,
 							favorited: favoritedCountriesObject[country.id],
-						};
-					});
+						})
+					);
+
 					setCountries(countriesWithFavorited);
-					setFavoritedCountries({ ...favoritedCountriesObject });
+					setFavoritedCountries(favoritedCountriesObject);
 				}
 
 				setIsLoading(false);
@@ -71,7 +74,7 @@ const App = () => {
 				setFavoritedCountries({});
 				setIsLoading(false);
 				setHasError(true);
-				console.log(error);
+				console.error(error);
 			}
 		};
 
@@ -84,7 +87,7 @@ const App = () => {
 			isInitialMount.current = false;
 		} else {
 			localStorage.setItem(
-				"favoritedCountries",
+				'favoritedCountries',
 				JSON.stringify(favoritedCountries)
 			);
 		}
@@ -117,25 +120,19 @@ const App = () => {
 				<div className="app">
 					<Navbar />
 					{hasError && <Alert />}
-					<Switch>
-						<Route
-							path="/"
-							exact
-							render={() => <Home />}
-						/>
-
-						<Route
-							path="/favorites"
-							render={() => <Favorites />}
-						/>
-
+					<Routes>
+						<Route index path="/" element={<Home />} />
+						<Route path="/favorites" element={<Favorites />} />
 						<Route
 							path="/countries/:code"
-							render={() => <Details toggleFavoriteStatus={toggleFavoriteStatus}/>}
+							element={
+								<Details
+									toggleFavoriteStatus={toggleFavoriteStatus}
+								/>
+							}
 						/>
-
-						<Route render={() => <Redirect to="/" />} />
-					</Switch>
+						<Route path="*" element={<Navigate to="/" replace />} />
+					</Routes>
 				</div>
 			</Router>
 		</CountriesContext.Provider>

@@ -13,7 +13,7 @@ const Catalog = ({ countries, noResultsMessage }) => {
 	return (
 		<section className="catalog">
 			{countries.length > 0 ? (
-				countries.map(country => (
+				countries.map((country) => (
 					<CatalogItem key={country.id} country={country} />
 				))
 			) : (
@@ -23,7 +23,7 @@ const Catalog = ({ countries, noResultsMessage }) => {
 	);
 };
 
-const CatalogNoResults = props => {
+const CatalogNoResults = (props) => {
 	return (
 		<div className="catalog__no-results-container">
 			<span className="catalog__no-results">{props.message}</span>

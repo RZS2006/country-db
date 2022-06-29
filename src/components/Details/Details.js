@@ -1,50 +1,48 @@
 // --- CountryDB - Details.js ---
 
 // Imports
-import React, { useState, useEffect, useContext } from "react";
-import { Redirect, useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import "./Details.css";
+import './Details.css';
 
-import Banner from "../Banner/Banner";
-import DetailsHeader from "./DetailsHeader";
-import DetailsData from "./DetailsData";
+import Banner from '../Banner/Banner';
+import DetailsHeader from './DetailsHeader';
+import DetailsData from './DetailsData';
 
-import { CountriesContext } from "../../contexts/CountriesContext";
+import { CountriesContext } from '../../contexts/CountriesContext';
 
 // Component
-const Details = ({toggleFavoriteStatus}) => {
+const Details = ({ toggleFavoriteStatus }) => {
+	const navigate = useNavigate();
 
 	// Context
-	const countries = useContext(CountriesContext)
+	const countries = useContext(CountriesContext);
 
 	// State
 	const { code } = useParams();
 	const [country, setCountry] = useState();
-	const [redirect, setRedirect] = useState(false);
 
 	// Side Effects
 	useEffect(() => {
 		const displayedCountry = countries.find(
 			(country) => country.alpha3Code === code
 		);
+
 		if (!displayedCountry) {
-			setRedirect(true);
+			navigate('/');
 		} else {
 			setCountry({ ...displayedCountry });
 		}
 	}, [countries, code]);
 
 	// Render
-	if (redirect) return <Redirect to="/" />;
-
 	if (!country) return null;
 
 	return (
 		<main className="details">
 			<Banner />
 			<div className="container">
-
 				<DetailsHeader
 					country={country}
 					toggleFavoriteStatus={toggleFavoriteStatus}
@@ -56,9 +54,8 @@ const Details = ({toggleFavoriteStatus}) => {
 					src={country.flag}
 					alt={`Flag of ${country.name}`}
 				/>
-				
-				<DetailsData country={country} />
 
+				<DetailsData country={country} />
 			</div>
 		</main>
 	);
