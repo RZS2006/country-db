@@ -8,22 +8,22 @@ import { Link } from 'react-router-dom';
 const CatalogItem = ({ country }) => {
 	// Render
 	return (
-		<Link to={`/countries/${country.alpha3Code}`}>
+		<Link to={`/countries/${country.id}`}>
 			<div className="catalog-item">
 				<img
 					className="catalog-item__flag"
-					src={country.flag}
-					alt={`Flag of ${country.name}`}
+					src={country.flags.svg}
+					alt={`Flag of ${country.name.common}`}
 				/>
 				<div className="catalog-item__name-container">
 					<h2
 						className={`catalog-item__name ${
-							country.name.length > 20 ? 'long' : 'short'
+							country.name.common.length > 20 ? 'long' : 'short'
 						}`}>
-						{country.name}
+						{country.name.common}
 					</h2>
 					<small className="catalog-item__native-name">
-						({country.nativeName})
+						({country.name.official})
 					</small>
 				</div>
 				<div className="catalog-item__favorite-status-container">

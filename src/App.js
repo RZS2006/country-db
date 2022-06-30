@@ -48,7 +48,6 @@ const App = () => {
 							favorited: localStorageData[country.id],
 						})
 					);
-
 					setCountries(countriesWithFavorited);
 					setFavoritedCountries({ ...localStorageData });
 				} else {

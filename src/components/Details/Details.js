@@ -26,7 +26,7 @@ const Details = ({ toggleFavoriteStatus }) => {
 	// Side Effects
 	useEffect(() => {
 		const displayedCountry = countries.find(
-			(country) => country.alpha3Code === code
+			(country) => country.id === code
 		);
 
 		if (!displayedCountry) {
@@ -51,8 +51,13 @@ const Details = ({ toggleFavoriteStatus }) => {
 				<div className="details__divider"></div>
 				<img
 					className="details__flag"
-					src={country.flag}
-					alt={`Flag of ${country.name}`}
+					src={country.flags.svg}
+					alt={`Flag of ${country.name.common}`}
+				/>
+				<img
+					className="details__flag"
+					src={country.coatOfArms.svg}
+					alt={`Coat of Arms of ${country.name.common}`}
 				/>
 
 				<DetailsData country={country} />

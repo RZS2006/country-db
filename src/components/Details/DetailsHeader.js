@@ -5,28 +5,31 @@ import React from 'react';
 
 // Component
 const DetailsHeader = ({ country, toggleFavoriteStatus }) => {
-
 	// Render
 	return (
 		<div className="details__header">
-
 			<div className="details__name-container">
 				<h2
-					className={`details__name ${country.name.length > 20 ? 'long' : 'short'}`}>
-					{country.name}
+					className={`details__name ${
+						country.name.common.length > 20 ? 'long' : 'short'
+					}`}>
+					{country.name.common}
 					<small className="details__native-name">
-						({country.nativeName})
+						({country.name.official})
 					</small>
 				</h2>
 			</div>
 
 			<span
-				className={`details__favorite-status-container ${country.favorited ? 'favorited' : 'not-favorited'}`}
+				className={`details__favorite-status-container ${
+					country.favorited ? 'favorited' : 'not-favorited'
+				}`}
 				onClick={() => toggleFavoriteStatus(country.id)}>
-				<small>{country.favorited ? 'Favorited' : 'Add to Favorites'}</small>
+				<small>
+					{country.favorited ? 'Favorited' : 'Add to Favorites'}
+				</small>
 				<span className="details__favorite-status-dot"></span>
 			</span>
-			
 		</div>
 	);
 };
