@@ -3,18 +3,21 @@
 /* Styles */
 .banner {
 	background-color: var(--grey-200);
-	padding: 1.6rem 0;
+	padding: 1.4rem 0;
 }
 
 .banner__link-container {
-	font-size: 1.6rem;
 	display: flex;
 	align-items: center;
 }
 
+.banner__link-container svg {
+	font-size: 1rem;
+}
+
 .banner__link-container small {
-	font-size: 1.6rem;
-	margin-left: 6px;
+	font-size: 1.4rem;
+	margin-left: 1em;
 	transition: margin-left var(--transition);
 }
 
@@ -24,6 +27,5 @@
 }
 
 .banner__link-container:hover small {
-	margin-left: 8px;
-	transition: var(--transition);
+	margin-left: 0.8em;
 }

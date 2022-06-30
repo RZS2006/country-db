@@ -1,15 +1,15 @@
 /* --- CountryDB - index.css --- Final */
 
 /* Font Import */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 /* Variables */
 :root {
 	--green-primary: #00812c;
 	--green-primary--hover: #016623;
-	--grey-400: #5c5c5c;
-	--grey-300--text: #6b6b6b;
-	--grey-200: #e5e5e5;
+	--grey-400: #4a4a4a;
+	--grey-300--text: #585858;
+	--grey-200: #ececec;
 	--grey-100--bg: #efefef;
 	--black--hover: #272727;
 	--red-primary: #da1f1f;
@@ -40,7 +40,7 @@ body {
 body,
 button,
 input {
-	font-family: "Poppins", sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 .container {

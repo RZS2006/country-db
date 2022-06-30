@@ -7,6 +7,10 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { getCountryById, getCountryByLanguage } from '../../api/api';
 
+const booleanToString = (boolean) => {
+	return boolean ? 'Yes' : 'No';
+};
+
 // Component
 const DetailsData = ({ country }) => {
 	// State
@@ -155,15 +159,15 @@ const DetailsData = ({ country }) => {
 					/>
 					<Entry
 						name="Independent"
-						value={country.independent.toString()}
+						value={booleanToString(country.independent)}
 					/>
 					<Entry
 						name="UN State"
-						value={country.unMember.toString()}
+						value={booleanToString(country.unMember)}
 					/>
 					<Entry
 						name="Landlocked"
-						value={country.landlocked.toString()}
+						value={booleanToString(country.landlocked)}
 					/>
 					{/* {borderCountries && (
 						<MultiEntry
@@ -183,7 +187,8 @@ const DetailsData = ({ country }) => {
 						name="Latitude/Longitude"
 						value={
 							country.latlng.length > 0 &&
-							`${country.latlng[0]}, ${country.latlng[1]}`
+							`${country.latlng[0].toFixed(2)}, 
+							${country.latlng[1].toFixed(2)}`
 						}
 					/>
 				</div>
@@ -221,11 +226,13 @@ const DetailsData = ({ country }) => {
 						})}
 					</MultiEntry>
 
-					<MultiEntry name="Internet TLD(s)" data={country.tld}>
-						{country.tld.map((tld, i) => {
-							return <Chip key={i} primary={tld} />;
-						})}
-					</MultiEntry>
+					{country.tld && (
+						<MultiEntry name="Internet TLD(s)" data={country.tld}>
+							{country.tld.map((tld, i) => {
+								return <Chip key={i} primary={tld} />;
+							})}
+						</MultiEntry>
+					)}
 
 					{country.gini && (
 						<Entry
@@ -240,6 +247,7 @@ const DetailsData = ({ country }) => {
 						name="Demonym"
 						value={country.demonyms['eng']['m']}
 					/>
+					<Entry name="Driving Side" value={country.car.side} />
 				</div>
 			</div>
 			<div className="details__data-section codes">
@@ -250,6 +258,11 @@ const DetailsData = ({ country }) => {
 					<Entry name="Numeric" value={country.ccn3} />
 					<Entry name="CIOC" value={country.cioc} />
 					<Entry name="FIFA" value={country.fifa} />
+					<MultiEntry name="Driving Sign(s)" data={country.car.signs}>
+						{country.car.signs.map((sign, i) => {
+							return <Chip key={i} primary={sign} />;
+						})}
+					</MultiEntry>
 				</div>
 			</div>
 		</div>

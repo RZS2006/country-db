@@ -2,7 +2,7 @@
 
 /* Styles */
 .navbar {
-	height: 72px;
+	height: 64px;
 	background-color: var(--green-primary);
 	position: sticky;
 	top: 0;
@@ -17,7 +17,7 @@
 
 .navbar__logo {
 	color: white;
-	font-size: 2.6rem;
+	font-size: 2rem;
 	font-weight: var(--fw-medium);
 }
 
@@ -32,18 +32,16 @@
 }
 
 .navbar__favorites-amount-badge {
-	font-size: 2rem;
+	display: inline-grid;
+	place-items: center;
+	margin-left: 1em;
+	min-height: 30px;
+	aspect-ratio: 1/1;
+	border-radius: 6px;
+	font-size: 1.6rem;
 	font-weight: var(--fw-medium);
-	margin-left: 8px;
 	color: var(--green-primary);
 	background-color: white;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	height: 30px;
-	min-width: 30px;
-	padding: 0 0.4rem;
-	border-radius: 6px;
 }
 
 .navbar__favorites-container:hover small,
@@ -63,18 +61,14 @@
 		height: 54px;
 	}
 
-	.navbar__logo {
-		font-size: 2.2rem;
-	}
-
+	.navbar__logo,
 	.navbar__favorites-container small {
 		font-size: 1.8rem;
 	}
 
 	.navbar__favorites-amount-badge {
-		font-size: 1.8rem;
-		margin-left: 6px;
-		height: 25px;
-		min-width: 25px;
+		font-size: 1.6rem;
+		margin-left: 0.8em;
+		min-height: 25px;
 	}
 }
