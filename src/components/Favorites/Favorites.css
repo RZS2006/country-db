@@ -10,19 +10,9 @@
 	font-weight: var(--fw-medium);
 }
 
-.favorites__divider {
-	width: 100%;
-	height: 2px;
-	background-color: var(--grey-200);
-}
-
 /* Media Queries */
 @media screen and (max-width: 600px) {
 	.favorites__title {
 		font-size: 2.8rem;
-	}
-
-	.favorites__divider {
-		display: none;
 	}
 }

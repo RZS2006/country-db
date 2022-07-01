@@ -1,7 +1,7 @@
 // --- CountryDB - Details.js ---
 
 // Imports
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import './Details.css';
@@ -21,24 +21,17 @@ const Details = ({ toggleFavoriteStatus }) => {
 	const countries = useContext(CountriesContext);
 
 	// State
-	const [country, setCountry] = useState();
+	const country = useMemo(() => {
+		return countries.find((country) => country.id === code);
+	}, [countries]);
 
-	// Side Effects
-	useEffect(() => {
-		const displayedCountry = countries.find(
-			(country) => country.id === code
-		);
+	if (!country) {
+		navigate('/');
+	}
 
-		if (!displayedCountry) {
-			navigate('/');
-		} else {
-			setCountry({ ...displayedCountry });
-		}
-	}, [countries, code]);
+	const { name, flags, coatOfArms } = country;
 
 	// Render
-	if (!country) return null;
-
 	return (
 		<main className="details">
 			<Banner />
@@ -48,18 +41,16 @@ const Details = ({ toggleFavoriteStatus }) => {
 					toggleFavoriteStatus={toggleFavoriteStatus}
 				/>
 
-				<div className="details__divider"></div>
-
 				<div className="details__image-container">
 					<img
 						className="details__flag"
-						src={country.flags.svg}
-						alt={`Flag of ${country.name.common}`}
+						src={flags.svg}
+						alt={`Flag of ${name.common}`}
 					/>
 					<img
 						className="details__coat-of-arms"
-						src={country.coatOfArms.svg}
-						alt={`Coat of Arms of ${country.name.common}`}
+						src={coatOfArms.svg}
+						alt={`Coat of Arms of ${name.common}`}
 					/>
 				</div>
 

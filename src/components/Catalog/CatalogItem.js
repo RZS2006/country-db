@@ -6,31 +6,33 @@ import { Link } from 'react-router-dom';
 
 // Component
 const CatalogItem = ({ country }) => {
+	const { id, name, favorited, flags } = country;
+
 	// Render
 	return (
-		<Link to={`/countries/${country.id}`}>
+		<Link to={`/countries/${id}`}>
 			<div className="catalog-item">
 				<img
 					className="catalog-item__flag"
-					src={country.flags.svg}
-					alt={`Flag of ${country.name.common}`}
+					src={flags.svg}
+					alt={`Flag of ${name.common}`}
 				/>
 				<div className="catalog-item__name-container">
 					<h2
 						className={`catalog-item__name ${
-							country.name.common.length > 20 ? 'long' : 'short'
+							name.common.length > 20 ? 'long' : 'short'
 						}`}>
-						{country.name.common}
+						{name.common}
 					</h2>
 					<small className="catalog-item__native-name">
-						({country.name.official})
+						({name.official})
 					</small>
 				</div>
 				<div className="catalog-item__favorite-status-container">
-					{country.favorited && <small>Favorited</small>}
+					{favorited && <small>Favorited</small>}
 					<span
 						className={`catalog-item__favorite-status-dot ${
-							country.favorited ? 'favorited' : 'not-favorited'
+							favorited ? 'favorited' : 'not-favorited'
 						}`}></span>
 				</div>
 			</div>

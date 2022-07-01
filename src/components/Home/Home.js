@@ -109,10 +109,9 @@ const Home = () => {
 					setHideFavorites={setHideFavorites}
 				/>
 
-				<div className="home__divider"></div>
 				<div className="home__results-container">
 					<div className="home__results-found-container">
-						<small>{`${displayedCountries.length} results found`}</small>
+						<small>{`${displayedCountries.length} result(s) found`}</small>
 					</div>
 					<Catalog
 						countries={displayedCountries}

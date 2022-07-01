@@ -48,6 +48,11 @@ const App = () => {
 							favorited: localStorageData[country.id],
 						})
 					);
+
+					countriesWithFavorited.sort((a, b) =>
+						a.name.common.localeCompare(b.name.common)
+					);
+
 					setCountries(countriesWithFavorited);
 					setFavoritedCountries({ ...localStorageData });
 				} else {
@@ -63,17 +68,21 @@ const App = () => {
 						})
 					);
 
+					countriesWithFavorited.sort((a, b) =>
+						a.name.common.localCompare(b.name.common)
+					);
+
 					setCountries(countriesWithFavorited);
 					setFavoritedCountries(favoritedCountriesObject);
 				}
 
 				setIsLoading(false);
-			} catch (error) {
+			} catch (e) {
 				setCountries([]);
 				setFavoritedCountries({});
 				setIsLoading(false);
 				setHasError(true);
-				console.error(error);
+				console.error(e);
 			}
 		};
 

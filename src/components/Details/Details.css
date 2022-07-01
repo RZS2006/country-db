@@ -39,6 +39,7 @@
 	padding: 0.6rem 1.2rem;
 	border-radius: 6px;
 	background-color: var(--grey-200);
+	cursor: pointer;
 }
 
 .details__favorite-status-container:hover {
@@ -77,12 +78,6 @@
 }
 
 /* Details.js */
-.details__divider {
-	width: 100%;
-	height: 2px;
-	background-color: var(--grey-200);
-}
-
 .details__image-container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);

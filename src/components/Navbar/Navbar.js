@@ -1,7 +1,7 @@
 // --- CountryDB - Navbar.js --- Final
 
 // Imports
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
@@ -14,9 +14,10 @@ const Navbar = () => {
 	const countries = useContext(CountriesContext);
 
 	// State
-	const favoritedCountriesAmount = countries.filter(
-		(country) => country.favorited
-	).length;
+	const favoritedCountriesNumber = useMemo(
+		() => countries.filter((country) => country.favorited).length,
+		[countries]
+	);
 
 	// Render
 	return (
@@ -31,7 +32,7 @@ const Navbar = () => {
 						<Link to="/favorites">
 							<small>Favorites</small>
 							<span className="navbar__favorites-amount-badge">
-								{favoritedCountriesAmount}
+								{favoritedCountriesNumber}
 							</span>
 						</Link>
 					</div>

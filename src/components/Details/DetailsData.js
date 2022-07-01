@@ -11,40 +11,92 @@ const booleanToString = (boolean) => {
 	return boolean ? 'Yes' : 'No';
 };
 
+const capitalize = (string) => {
+	if (typeof string !== 'string') return string;
+
+	return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 // Component
 const DetailsData = ({ country }) => {
+	const {
+		name,
+		altSpellings,
+		translations,
+		capital,
+		region,
+		subregion,
+		continents,
+		area,
+		population,
+		independent,
+		unMember,
+		landlocked,
+		borders,
+		latlng,
+		languages,
+		currencies,
+		timezones,
+		tld,
+		gini,
+		demonyms,
+	} = country;
+
 	// State
 	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const [borderCountries, setBorderCountries] = useState([]);
-	const [languages, setLanguages] = useState({});
+	const [countryBorders, setCountryBorders] = useState([]);
+	// const [languages, setLanguages] = useState({});
 
 	// Side Effects
-	// useEffect(() => {
-	// 	const fetchBorderCountry = async (id) => {
-	// 		try {
-	// 			const borderCountry = await getCountryById(id);
-	// 			console.log(borderCountry);
+	useEffect(() => {
+		const fetchCountryBorder = async (id) => {
+			const border = await getCountryById(id);
+			setCountryBorders((prev) => [...prev, border[0].name.common]);
+		};
 
-	// 			// setBorderCountries((prev) => [
-	// 			// 	...prev,
-	// 			// 	borderCountry.name.common,
-	// 			// ]);
-	// 		} catch (e) {
-	// 			console.error(e);
-	// 		}
-	// 	};
+		const fetchCountryBorders = async () => {
+			try {
+				if (borders) {
+					borders.forEach((id) => fetchCountryBorder(id));
+				}
+			} catch (e) {
+				console.error(e);
 
-	// 	if (country.borders) {
-	// 		try {
-	// 			country.borders.forEach((id) => {
-	// 				fetchBorderCountry(id);
-	// 			});
-	// 		} catch (e) {
-	// 			console.error(e);
-	// 			setBorderCountries(country.borders);
-	// 		}
-	// 	}
-	// }, [country]);
+				if (borders) {
+					setCountryBorders(borders);
+				}
+			}
+		};
+
+		fetchCountryBorders();
+	}, [country]);
+
+	// 	fetchCountryBorders();
+	// 	// const fetchBorderCountry = async (id) => {
+	// 	// 	try {
+	// 	// 		const borderCountry = await getCountryById(id);
+	// 	// 		console.log(borderCountry);
+
+	// 	// 		setBorderCountries((prev) => [
+	// 	// 			...prev,
+	// 	// 			borderCountry.name.common,
+	// 	// 		]);
+	// 	// 	} catch (e) {
+	// 	// 		console.error(e);
+	// 	// 	}
+	// 	// };
+
+	// 	// if (country.borders) {
+	// 	// 	try {
+	// 	// 		country.borders.forEach((id) => {
+	// 	// 			fetchBorderCountry(id);
+	// 	// 		});
+	// 	// 	} catch (e) {
+	// 	// 		console.error(e);
+	// 	// 		setBorderCountries(country.borders);
+	// 	// 	}
+	// 	// }
+	// }, []);
 
 	// useEffect(() => {
 	// 	const obj = {};
@@ -87,21 +139,16 @@ const DetailsData = ({ country }) => {
 	// }, [country]);
 
 	// Render
-
-	console.log(country);
-
 	return (
 		<div className="details__data">
 			<div className="details__data-section names">
 				<div className="details__data-section-header">Names</div>
 				<div className="details__data-section-content">
-					<Entry name="Common Name" value={country.name.common} />
-					<Entry name="Official Name" value={country.name.official} />
+					<Entry name="Common Name" value={name.common} />
+					<Entry name="Official Name" value={name.official} />
 
-					<MultiEntry
-						name="Alternative Names"
-						data={country.altSpellings}>
-						{country.altSpellings.map((altSpelling, i) => {
+					<MultiEntry name="Alternative Names" data={altSpellings}>
+						{altSpellings.map((altSpelling, i) => {
 							return <Chip key={i} primary={altSpelling} />;
 						})}
 					</MultiEntry>
@@ -119,12 +166,12 @@ const DetailsData = ({ country }) => {
 					</div>
 					<div className="details__dropdown-panel">
 						<div className="details__dropdown-panel-content">
-							{Object.keys(country.translations).map((key, i) => {
+							{Object.keys(translations).map((key, i) => {
 								return (
 									<Entry
 										key={i}
 										name={key}
-										value={country.translations[key].common}
+										value={translations[key].common}
 									/>
 								);
 							})}
@@ -135,61 +182,55 @@ const DetailsData = ({ country }) => {
 			<div className="details__data-section geography">
 				<div className="details__data-section-header">Geography</div>
 				<div className="details__data-section-content">
-					{country.capital && (
-						<MultiEntry name="Capital(s)" data={country.capital}>
-							{country.capital.map((capital, i) => {
+					{capital && (
+						<MultiEntry name="Capital(s)" data={capital}>
+							{capital.map((capital, i) => {
 								return <Chip key={i} primary={capital} />;
 							})}
 						</MultiEntry>
 					)}
 
-					<Entry name="Region" value={country.region} />
-					<Entry name="Subregion" value={country.subregion} />
+					<Entry name="Region" value={region} />
+					<Entry name="Subregion" value={subregion} />
+
+					<MultiEntry name="Continents" data={continents}>
+						{continents.map((continent, i) => {
+							return <Chip key={i} primary={continent} />;
+						})}
+					</MultiEntry>
+
 					<Entry
 						name="Land Area"
 						value={
 							<>
-								{country.area.toLocaleString()} km<sup>2</sup>
+								{area.toLocaleString()} km<sup>2</sup>
 							</>
 						}
 					/>
 					<Entry
 						name="Population"
-						value={country.population.toLocaleString()}
+						value={population.toLocaleString()}
 					/>
 					<Entry
 						name="Independent"
-						value={booleanToString(country.independent)}
+						value={booleanToString(independent)}
 					/>
-					<Entry
-						name="UN State"
-						value={booleanToString(country.unMember)}
-					/>
+					<Entry name="UN State" value={booleanToString(unMember)} />
 					<Entry
 						name="Landlocked"
-						value={booleanToString(country.landlocked)}
+						value={booleanToString(landlocked)}
 					/>
-					{/* {borderCountries && (
-						<MultiEntry
-							entryKey="Land Borders"
-							entryData={country.borders}>
-							{country.borders.map((_, i) => {
-								return (
-									<Chip
-										key={i}
-										primary={borderCountries[i]}
-									/>
-								);
+					{borders && (
+						<MultiEntry name="Land Borders" data={countryBorders}>
+							{countryBorders.map((border, i) => {
+								return <Chip key={i} primary={border} />;
 							})}
 						</MultiEntry>
-					)} */}
+					)}
 					<Entry
 						name="Latitude/Longitude"
-						value={
-							country.latlng.length > 0 &&
-							`${country.latlng[0].toFixed(2)}, 
-							${country.latlng[1].toFixed(2)}`
-						}
+						value={`${latlng[0].toFixed(2)}° N, 
+						${latlng[1].toFixed(2)}° E`}
 					/>
 				</div>
 			</div>
@@ -198,56 +239,61 @@ const DetailsData = ({ country }) => {
 					Miscellaneous
 				</div>
 				<div className="details__data-section-content">
-					<MultiEntry
-						name="Languages"
-						data={Object.keys(country.languages)}>
-						{Object.values(country.languages).map((language, i) => {
-							return <Chip key={i} primary={language} />;
-						})}
-					</MultiEntry>
+					{languages && (
+						<MultiEntry
+							name="Languages"
+							data={Object.keys(languages)}>
+							{Object.values(languages).map((language, i) => {
+								return <Chip key={i} primary={language} />;
+							})}
+						</MultiEntry>
+					)}
 
-					<MultiEntry
-						name="Currencies"
-						data={Object.keys(country.currencies)}>
-						{Object.keys(country.currencies).map((key, i) => {
-							return (
-								<Chip
-									key={i}
-									primary={country.currencies[key].name}
-									secondary={`${country.currencies[key].symbol}, ${key}`}
-								/>
-							);
-						})}
-					</MultiEntry>
+					{currencies && (
+						<MultiEntry
+							name="Currencies"
+							data={Object.keys(currencies)}>
+							{Object.keys(currencies).map((key, i) => {
+								return (
+									<Chip
+										key={i}
+										primary={currencies[key].name}
+										secondary={`${currencies[key].symbol}, ${key}`}
+									/>
+								);
+							})}
+						</MultiEntry>
+					)}
 
-					<MultiEntry name="Time Zone(s)" data={country.timezones}>
-						{country.timezones.map((timezone, i) => {
+					<MultiEntry name="Time Zone(s)" data={timezones}>
+						{timezones.map((timezone, i) => {
 							return <Chip key={i} primary={timezone} />;
 						})}
 					</MultiEntry>
 
-					{country.tld && (
-						<MultiEntry name="Internet TLD(s)" data={country.tld}>
-							{country.tld.map((tld, i) => {
+					{tld && (
+						<MultiEntry name="Internet TLD(s)" data={tld}>
+							{tld.map((tld, i) => {
 								return <Chip key={i} primary={tld} />;
 							})}
 						</MultiEntry>
 					)}
 
-					{country.gini && (
+					{gini && (
 						<Entry
 							name="Gini Index"
-							value={`${Object.values(country.gini)[0]} (${
-								Object.keys(country.gini)[0]
+							value={`${Object.values(gini)[0]} (${
+								Object.keys(gini)[0]
 							})`}
 						/>
 					)}
 
-					<Entry
-						name="Demonym"
-						value={country.demonyms['eng']['m']}
-					/>
+					<Entry name="Demonym" value={demonyms['eng']['m']} />
 					<Entry name="Driving Side" value={country.car.side} />
+					<Entry
+						name="Starting Weekday"
+						value={country.startOfWeek}
+					/>
 				</div>
 			</div>
 			<div className="details__data-section codes">
@@ -275,7 +321,9 @@ const Entry = ({ name, value }) => {
 	return (
 		<div className="details__data-section-entry">
 			<span className="details__entry-key">{name}:</span>
-			<span className="details__entry-value">{value ? value : '-'}</span>
+			<span className="details__entry-value">
+				{capitalize(value) || '-'}
+			</span>
 		</div>
 	);
 };
@@ -285,7 +333,7 @@ const MultiEntry = ({ name, data, children }) => {
 		<div className="details__data-section-entry">
 			<span className="details__entry-key">{name}:</span>
 			<div className="details__entry-value multiple">
-				{!data ? null : data.length > 0 ? children : '-'}
+				{!data || data.length < 1 || data[0] === '' ? '-' : children}
 			</div>
 		</div>
 	);

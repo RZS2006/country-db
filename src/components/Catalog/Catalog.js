@@ -23,10 +23,10 @@ const Catalog = ({ countries, noResultsMessage }) => {
 	);
 };
 
-const CatalogNoResults = (props) => {
+const CatalogNoResults = ({ message }) => {
 	return (
 		<div className="catalog__no-results-container">
-			<span className="catalog__no-results">{props.message}</span>
+			<span className="catalog__no-results">{message}</span>
 		</div>
 	);
 };
