@@ -173,7 +173,7 @@
 }
 
 .details__data-section-dropdown.open .details__dropdown-panel {
-	max-height: 800px;
+	max-height: 96rem;
 }
 
 .details__entry-value.multiple {

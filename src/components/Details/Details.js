@@ -1,7 +1,7 @@
 // --- CountryDB - Details.js ---
 
 // Imports
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import './Details.css';
@@ -23,7 +23,7 @@ const Details = ({ toggleFavoriteStatus }) => {
 	// State
 	const country = useMemo(() => {
 		return countries.find((country) => country.id === code);
-	}, [countries]);
+	}, [countries, code]);
 
 	if (!country) {
 		navigate('/');
