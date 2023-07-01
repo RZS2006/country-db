@@ -41,7 +41,10 @@ const App = () => {
 				const localStorageData = JSON.parse(
 					localStorage.getItem('favoritedCountries')
 				);
-				if (localStorageData) {
+
+				console.log(localStorageData);
+
+				if (localStorageData !== null) {
 					const countriesWithFavorited = countriesWithId.map(
 						(country) => ({
 							...country,
@@ -50,7 +53,9 @@ const App = () => {
 					);
 
 					countriesWithFavorited.sort((a, b) =>
-						a.name.common.localeCompare(b.name.common)
+						a.name.common
+							.toString()
+							.localeCompare(b.name.common.toString())
 					);
 
 					setCountries(countriesWithFavorited);
@@ -69,7 +74,9 @@ const App = () => {
 					);
 
 					countriesWithFavorited.sort((a, b) =>
-						a.name.common.localCompare(b.name.common)
+						a.name.common
+							.toString()
+							.localeCompare(b.name.common.toString())
 					);
 
 					setCountries(countriesWithFavorited);
