@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import './Details.css';
@@ -7,7 +7,7 @@ import Banner from '../Banner/Banner';
 import DetailsHeader from './DetailsHeader';
 import DetailsData from './DetailsData';
 
-import { CountriesContext } from '../../contexts/CountriesContext';
+import { useCountries } from '../../contexts/CountriesContext';
 
 // Component
 const Details = ({ toggleFavoriteStatus }) => {
@@ -15,7 +15,7 @@ const Details = ({ toggleFavoriteStatus }) => {
 	const { code } = useParams();
 
 	// Context
-	const countries = useContext(CountriesContext);
+	const countries = useCountries();
 
 	// State
 	const country = useMemo(() => {
@@ -27,6 +27,8 @@ const Details = ({ toggleFavoriteStatus }) => {
 	}
 
 	const { name, flags, coatOfArms } = country;
+
+	console.log(country);
 
 	// Render
 	return (
@@ -44,11 +46,29 @@ const Details = ({ toggleFavoriteStatus }) => {
 						src={flags.svg}
 						alt={`Flag of ${name.common}`}
 					/>
-					<img
-						className="details__coat-of-arms"
-						src={coatOfArms.svg}
-						alt={`Coat of Arms of ${name.common}`}
-					/>
+
+					{coatOfArms.svg && (
+						<img
+							className="details__coat-of-arms"
+							src={coatOfArms.svg}
+							alt={`Coat of Arms of ${name.common}`}
+						/>
+					)}
+				</div>
+
+				<div className="details__map-container">
+					<a
+						href={country.maps.googleMaps}
+						target="_blank"
+						rel="noopener noreferrer">
+						Google Maps
+					</a>
+					<a
+						href={country.maps.openStreetMaps}
+						target="_blank"
+						rel="noopener noreferrer">
+						Open Street Maps
+					</a>
 				</div>
 
 				<DetailsData country={country} />

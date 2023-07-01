@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 
-import { getCountries } from '../api/api';
+import { getCountries } from '../api';
 
 // Exports
 export const CountriesContext = React.createContext();
 
-// export const useCountries = () => {
-// 	return useContext(CountriesContext);
-// };
+export const useCountries = () => {
+	return useContext(CountriesContext);
+};
 
 // const CountriesProvider = ({ children }) => {
 // 	const [countries, setCountries] = useState();
@@ -26,7 +26,7 @@ export const CountriesContext = React.createContext();
 // 	}, []);
 
 // 	return (
-// 		<CountriesContext.Provider data={countries}>
+// 		<CountriesContext.Provider value={countries}>
 // 			{children}
 // 		</CountriesContext.Provider>
 // 	);

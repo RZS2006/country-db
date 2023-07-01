@@ -1,14 +1,14 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
 
-import { CountriesContext } from '../../contexts/CountriesContext';
+import { useCountries } from '../../contexts/CountriesContext';
 
 // Component
 const Navbar = () => {
 	// Context
-	const countries = useContext(CountriesContext);
+	const countries = useCountries();
 
 	// State
 	const favoritedCountriesNumber = useMemo(

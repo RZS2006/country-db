@@ -13,7 +13,7 @@ import Details from './components/Details/Details';
 import Alert from './components/Alert/Alert';
 import Loading from './components/Loading/Loading';
 
-import { getCountries } from './api/api';
+import { getCountries } from './api';
 
 import { CountriesContext } from './contexts/CountriesContext';
 
@@ -38,8 +38,6 @@ const App = () => {
 				const localStorageData = JSON.parse(
 					localStorage.getItem('favoritedCountries')
 				);
-
-				console.log(localStorageData);
 
 				if (localStorageData !== null) {
 					const countriesWithFavorited = countriesWithId.map(

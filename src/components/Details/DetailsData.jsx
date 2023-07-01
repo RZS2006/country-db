@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-import { getCountryById, getCountryByLanguage } from '../../api/api';
+import { getCountryById, getCountryByLanguage } from '../../api';
 
 const booleanToString = (boolean) => {
 	return boolean ? 'Yes' : 'No';
@@ -37,6 +37,7 @@ const DetailsData = ({ country }) => {
 		tld,
 		gini,
 		demonyms,
+		car,
 	} = country;
 
 	// State
@@ -285,8 +286,11 @@ const DetailsData = ({ country }) => {
 						/>
 					)}
 
-					<Entry name="Demonym" value={demonyms['eng']['m']} />
-					<Entry name="Driving Side" value={country.car.side} />
+					{demonyms && (
+						<Entry name="Demonym" value={demonyms['eng']['m']} />
+					)}
+
+					<Entry name="Driving Side" value={car.side} />
 					<Entry
 						name="Starting Weekday"
 						value={country.startOfWeek}
@@ -301,11 +305,14 @@ const DetailsData = ({ country }) => {
 					<Entry name="Numeric" value={country.ccn3} />
 					<Entry name="CIOC" value={country.cioc} />
 					<Entry name="FIFA" value={country.fifa} />
-					<MultiEntry name="Driving Sign(s)" data={country.car.signs}>
-						{country.car.signs.map((sign, i) => {
-							return <Chip key={i} primary={sign} />;
-						})}
-					</MultiEntry>
+
+					{car.signs && (
+						<MultiEntry name="Driving Sign(s)" data={car.signs}>
+							{car.signs.map((sign, i) => {
+								return <Chip key={i} primary={sign} />;
+							})}
+						</MultiEntry>
+					)}
 				</div>
 			</div>
 		</div>

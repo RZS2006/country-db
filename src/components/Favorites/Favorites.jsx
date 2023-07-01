@@ -1,16 +1,16 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import './Favorites.css';
 
 import Banner from '../Banner/Banner';
 import Catalog from '../Catalog/Catalog';
 
-import { CountriesContext } from '../../contexts/CountriesContext';
+import { useCountries } from '../../contexts/CountriesContext';
 
 // Component
 const Favorites = () => {
 	// Context
-	const countries = useContext(CountriesContext);
+	const countries = useCountries();
 
 	// State
 	const favoritedCountries = useMemo(

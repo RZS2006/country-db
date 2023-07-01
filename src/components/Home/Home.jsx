@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Home.css';
@@ -6,11 +6,11 @@ import './Home.css';
 import Search from './Search';
 import Catalog from '../Catalog/Catalog';
 
-import { CountriesContext } from '../../contexts/CountriesContext';
+import { useCountries } from '../../contexts/CountriesContext';
 
 // Component
 const Home = () => {
-	const countries = useContext(CountriesContext);
+	const countries = useCountries();
 	const navigate = useNavigate();
 
 	// State
