@@ -1,6 +1,3 @@
-// --- CountryDB - Details.js ---
-
-// Imports
 import React, { useContext, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 

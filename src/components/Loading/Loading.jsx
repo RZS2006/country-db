@@ -1,15 +1,11 @@
-// --- CountryDB - Loading.js --- Final
+import React from 'react';
 
-// Imports
-import React from "react";
+import './Loading.css';
 
-import "./Loading.css";
-
-import loadingSpinner from "../../assets/Rolling-1s-170px.gif";
+import loadingSpinner from '../../assets/Rolling-1s-170px.gif';
 
 // Component
 const Loading = () => {
-	
 	// Render
 	return (
 		<div className="loading">

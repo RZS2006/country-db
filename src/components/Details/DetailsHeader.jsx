@@ -1,6 +1,3 @@
-// --- CountryDB - DetailsHeader.js ---
-
-// Imports
 import React from 'react';
 
 // Component

@@ -1,6 +1,3 @@
-// --- CountryDB - Favorites.js ---
-
-// Imports
 import React, { useContext, useMemo } from 'react';
 
 import './Favorites.css';

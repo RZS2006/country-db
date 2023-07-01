@@ -1,6 +1,3 @@
-// --- CountryDB - CountriesContext.js --- Final
-
-// Imports
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 

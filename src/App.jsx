@@ -1,6 +1,3 @@
-// --- CountryDB - App.js ---
-
-// Imports
 import React, { useState, useEffect, useRef } from 'react';
 import {
 	BrowserRouter as Router,

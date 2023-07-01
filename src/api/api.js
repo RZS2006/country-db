@@ -1,5 +1,3 @@
-// --- CountryDB - api.js --- Final
-
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
 // Exports

@@ -1,6 +1,3 @@
-// --- CountryDB - Navbar.js --- Final
-
-// Imports
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 

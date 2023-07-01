@@ -1,6 +1,3 @@
-// --- CountryDB - Catalog.js ---
-
-// Imports
 import React from 'react';
 
 import './Catalog.css';
