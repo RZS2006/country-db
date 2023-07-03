@@ -9,7 +9,7 @@ import {
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Favorites from './pages/Favorites/Favorites';
-import Details from './pages/Details';
+import Details from './pages/Details/Details';
 import Alert from './components/Alert/Alert';
 import Loading from './components/Loading/Loading';
 

@@ -5,33 +5,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { getCountryById, getCountryByLanguage } from '../../api';
 import { convertBoolToStr, capitalizeStr } from '../../utils';
-
-const languageNames = {
-	ara: 'Arabic',
-	bre: 'Breton',
-	ces: 'Czech',
-	deu: 'German',
-	est: 'Estonian',
-	fin: 'Finnish',
-	fra: 'French',
-	hrv: 'Croatian',
-	hun: 'Hungarian',
-	ita: 'Italian',
-	jpn: 'Japanese',
-	kor: 'Korean',
-	nld: 'Dutch',
-	per: 'Persian',
-	pol: 'Polish',
-	por: 'Portuguese',
-	rus: 'Russian',
-	slk: 'Slovak',
-	spa: 'Spanish',
-	srp: 'Serbian',
-	swe: 'Swedish',
-	tur: 'Turkish',
-	urd: 'Urdu',
-	zho: 'Chinese',
-};
+import { LANGUAGES_NAMES } from '../../data/constants';
 
 // Component
 const DetailsData = ({ country }) => {
@@ -91,6 +65,8 @@ const DetailsData = ({ country }) => {
 		fetchCountryBorders();
 	}, [country]);
 
+	console.log(country);
+
 	// Render
 	return (
 		<div className="details__data">
@@ -99,6 +75,23 @@ const DetailsData = ({ country }) => {
 				<div className="details__data-section-content">
 					<Entry name="Common Name" value={name.common} />
 					<Entry name="Official Name" value={name.official} />
+
+					<MultiEntry name="Native Names" data={name.nativeName}>
+						{Object.entries(name.nativeName).map(
+							(nativeName, i) => {
+								return (
+									<Chip
+										key={i}
+										primary={nativeName[1].common}
+										secondary={
+											languages[nativeName[0]] ||
+											nativeName[0]
+										}
+									/>
+								);
+							}
+						)}
+					</MultiEntry>
 
 					<MultiEntry name="Alternative Names" data={altSpellings}>
 						{altSpellings.map((altSpelling, i) => {
@@ -124,7 +117,7 @@ const DetailsData = ({ country }) => {
 									return (
 										<Entry
 											key={i}
-											name={languageNames[key] || key}
+											name={LANGUAGES_NAMES[key] || key}
 											value={translations[key].common}
 										/>
 									);
