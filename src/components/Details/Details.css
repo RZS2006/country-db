@@ -180,17 +180,21 @@
 }
 
 .details__dropdown-panel {
-	max-height: 0;
-	overflow: hidden;
-	transition: var(--transition);
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 500ms;
 }
 
 .details__dropdown-panel-content {
+	overflow: hidden;
+}
+
+.details__dropdown-panel-content > div {
 	padding: 1rem 2rem;
 }
 
 .details__data-section-dropdown.open .details__dropdown-panel {
-	max-height: 96rem;
+	grid-template-rows: 1fr;
 }
 
 .details__entry-value.multiple {

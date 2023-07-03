@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,6 +13,33 @@ const capitalize = (string) => {
 	if (typeof string !== 'string') return string;
 
 	return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+const languageNames = {
+	ara: 'Arabic',
+	bre: 'Breton',
+	ces: 'Czech',
+	deu: 'German',
+	est: 'Estonian',
+	fin: 'Finnish',
+	fra: 'French',
+	hrv: 'Croatian',
+	hun: 'Hungarian',
+	ita: 'Italian',
+	jpn: 'Japanese',
+	kor: 'Korean',
+	nld: 'Dutch',
+	per: 'Persian',
+	pol: 'Polish',
+	por: 'Portuguese',
+	rus: 'Russian',
+	slk: 'Slovak',
+	spa: 'Spanish',
+	srp: 'Serbian',
+	swe: 'Swedish',
+	tur: 'Turkish',
+	urd: 'Urdu',
+	zho: 'Chinese',
 };
 
 // Component
@@ -49,10 +77,14 @@ const DetailsData = ({ country }) => {
 	useEffect(() => {
 		const fetchCountryBorder = async (id) => {
 			const border = await getCountryById(id);
-			setCountryBorders((prev) => [...prev, border[0].name.common]);
+			setCountryBorders((prev) => [
+				...prev,
+				{ id: id, name: border[0].name.common },
+			]);
 		};
 
 		const fetchCountryBorders = async () => {
+			setCountryBorders([]);
 			try {
 				if (borders) {
 					borders.forEach((id) => fetchCountryBorder(id));
@@ -164,15 +196,17 @@ const DetailsData = ({ country }) => {
 					</div>
 					<div className="details__dropdown-panel">
 						<div className="details__dropdown-panel-content">
-							{Object.keys(translations).map((key, i) => {
-								return (
-									<Entry
-										key={i}
-										name={key}
-										value={translations[key].common}
-									/>
-								);
-							})}
+							<div>
+								{Object.keys(translations).map((key, i) => {
+									return (
+										<Entry
+											key={i}
+											name={languageNames[key] || key}
+											value={translations[key].common}
+										/>
+									);
+								})}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -221,7 +255,13 @@ const DetailsData = ({ country }) => {
 					{borders && (
 						<MultiEntry name="Land Borders" data={countryBorders}>
 							{countryBorders.map((border, i) => {
-								return <Chip key={i} primary={border} />;
+								return (
+									<Chip
+										key={i}
+										primary={border.name}
+										link={`/countries/${border.id}`}
+									/>
+								);
 							})}
 						</MultiEntry>
 					)}
@@ -343,8 +383,13 @@ const MultiEntry = ({ name, data, children }) => {
 	);
 };
 
-const Chip = ({ primary, secondary }) => {
-	return (
+const Chip = ({ primary, secondary, link }) => {
+	return link ? (
+		<Link to={link} className="details__entry-value-chip">
+			<span>{primary}</span>
+			{secondary && <small>({secondary})</small>}
+		</Link>
+	) : (
 		<span className="details__entry-value-chip">
 			<span>{primary}</span>
 			{secondary && <small>({secondary})</small>}
