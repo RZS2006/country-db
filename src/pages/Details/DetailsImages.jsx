@@ -7,11 +7,16 @@ const DetailsImages = ({ country }) => {
 	// Render
 	return (
 		<div className="details__image-container">
-			<img
-				className="details__flag"
-				src={flags.svg}
-				alt={`Flag of ${name.common}`}
-			/>
+			<div>
+				<img
+					className="details__flag"
+					src={flags.svg}
+					alt={`Flag of ${name.common}`}
+				/>
+				{flags.alt && (
+					<p className="details__flag-description">{flags.alt}</p>
+				)}
+			</div>
 
 			{coatOfArms.svg && (
 				<img

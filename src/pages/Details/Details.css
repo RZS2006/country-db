@@ -88,6 +88,12 @@
 	margin-top: 2rem;
 }
 
+.details__flag-description {
+	font-size: 1.2rem;
+	margin-top: 0.5rem;
+	color: var(--grey-300--text);
+}
+
 .details__coat-of-arms {
 	width: 100%;
 	max-width: 200px;

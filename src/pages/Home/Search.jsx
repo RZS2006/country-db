@@ -53,7 +53,7 @@ const Search = ({
 						checked={hideNonFavorites}
 						onChange={() => setHideNonFavorites(!hideNonFavorites)}
 					/>
-					Hide Non-Favorites
+					Hide non-favorites
 				</label>
 				<label
 					className="search__input-label search__filter-checkbox-label"
@@ -65,7 +65,7 @@ const Search = ({
 						checked={hideFavorites}
 						onChange={() => setHideFavorites(!hideFavorites)}
 					/>
-					Hide Favorites
+					Hide favorites
 				</label>
 			</div>
 		</section>
