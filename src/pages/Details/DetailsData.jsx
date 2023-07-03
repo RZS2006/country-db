@@ -31,6 +31,7 @@ const DetailsData = ({ country }) => {
 		gini,
 		demonyms,
 		car,
+		idd,
 	} = country;
 
 	// State
@@ -76,22 +77,24 @@ const DetailsData = ({ country }) => {
 					<Entry name="Common Name" value={name.common} />
 					<Entry name="Official Name" value={name.official} />
 
-					<MultiEntry name="Native Names" data={name.nativeName}>
-						{Object.entries(name.nativeName).map(
-							(nativeName, i) => {
-								return (
-									<Chip
-										key={i}
-										primary={nativeName[1].common}
-										secondary={
-											languages[nativeName[0]] ||
-											nativeName[0]
-										}
-									/>
-								);
-							}
-						)}
-					</MultiEntry>
+					{name.nativeName && (
+						<MultiEntry name="Native Names" data={name.nativeName}>
+							{Object.entries(name.nativeName).map(
+								(nativeName, i) => {
+									return (
+										<Chip
+											key={i}
+											primary={nativeName[1].common}
+											secondary={
+												languages[nativeName[0]] ||
+												nativeName[0]
+											}
+										/>
+									);
+								}
+							)}
+						</MultiEntry>
+					)}
 
 					<MultiEntry name="Alternative Names" data={altSpellings}>
 						{altSpellings.map((altSpelling, i) => {
@@ -219,11 +222,13 @@ const DetailsData = ({ country }) => {
 						</MultiEntry>
 					)}
 
-					<MultiEntry name="Time Zone(s)" data={timezones}>
-						{timezones.map((timezone, i) => {
-							return <Chip key={i} primary={timezone} />;
-						})}
-					</MultiEntry>
+					{timezones && (
+						<MultiEntry name="Time Zone(s)" data={timezones}>
+							{timezones.map((timezone, i) => {
+								return <Chip key={i} primary={timezone} />;
+							})}
+						</MultiEntry>
+					)}
 
 					{tld && (
 						<MultiEntry name="Internet TLD(s)" data={tld}>
@@ -251,6 +256,15 @@ const DetailsData = ({ country }) => {
 						name="Starting Weekday"
 						value={country.startOfWeek}
 					/>
+
+					{idd && idd.suffixes && (
+						<Entry
+							name="Calling Code"
+							value={`${idd.root}${
+								idd.suffixes.length === 1 ? idd.suffixes[0] : ''
+							}`}
+						/>
+					)}
 				</div>
 			</div>
 			<div className="details__data-section codes">

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import './Details.css';
@@ -18,6 +18,10 @@ const Details = ({ toggleFavoriteStatus }) => {
 
 	// Context
 	const countries = useCountries();
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+	}, []);
 
 	// State
 	const country = useMemo(() => {
