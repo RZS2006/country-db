@@ -3,11 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import './Details.css';
 
-import Banner from '../Banner/Banner';
+import Banner from '../../components/Banner/Banner';
 import DetailsHeader from './DetailsHeader';
+import DetailsImages from './DetailsImages';
 import DetailsData from './DetailsData';
 
 import { useCountries } from '../../contexts/CountriesContext';
+import DetailsMaps from './DetailsMaps';
 
 // Component
 const Details = ({ toggleFavoriteStatus }) => {
@@ -26,10 +28,6 @@ const Details = ({ toggleFavoriteStatus }) => {
 		navigate('/');
 	}
 
-	const { name, flags, coatOfArms } = country;
-
-	console.log(country);
-
 	// Render
 	return (
 		<main className="details">
@@ -39,38 +37,8 @@ const Details = ({ toggleFavoriteStatus }) => {
 					country={country}
 					toggleFavoriteStatus={toggleFavoriteStatus}
 				/>
-
-				<div className="details__image-container">
-					<img
-						className="details__flag"
-						src={flags.svg}
-						alt={`Flag of ${name.common}`}
-					/>
-
-					{coatOfArms.svg && (
-						<img
-							className="details__coat-of-arms"
-							src={coatOfArms.svg}
-							alt={`Coat of Arms of ${name.common}`}
-						/>
-					)}
-				</div>
-
-				<div className="details__map-container">
-					<a
-						href={country.maps.googleMaps}
-						target="_blank"
-						rel="noopener noreferrer">
-						Google Maps
-					</a>
-					<a
-						href={country.maps.openStreetMaps}
-						target="_blank"
-						rel="noopener noreferrer">
-						Open Street Maps
-					</a>
-				</div>
-
+				<DetailsImages country={country} />
+				<DetailsMaps country={country} />
 				<DetailsData country={country} />
 			</div>
 		</main>

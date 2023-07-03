@@ -4,16 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { getCountryById, getCountryByLanguage } from '../../api';
-
-const booleanToString = (boolean) => {
-	return boolean ? 'Yes' : 'No';
-};
-
-const capitalize = (string) => {
-	if (typeof string !== 'string') return string;
-
-	return string.charAt(0).toUpperCase() + string.slice(1);
-};
+import { convertBoolToStr, capitalizeStr } from '../../utils';
 
 const languageNames = {
 	ara: 'Arabic',
@@ -71,7 +62,6 @@ const DetailsData = ({ country }) => {
 	// State
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [countryBorders, setCountryBorders] = useState([]);
-	// const [languages, setLanguages] = useState({});
 
 	// Side Effects
 	useEffect(() => {
@@ -100,73 +90,6 @@ const DetailsData = ({ country }) => {
 
 		fetchCountryBorders();
 	}, [country]);
-
-	// 	fetchCountryBorders();
-	// 	// const fetchBorderCountry = async (id) => {
-	// 	// 	try {
-	// 	// 		const borderCountry = await getCountryById(id);
-	// 	// 		console.log(borderCountry);
-
-	// 	// 		setBorderCountries((prev) => [
-	// 	// 			...prev,
-	// 	// 			borderCountry.name.common,
-	// 	// 		]);
-	// 	// 	} catch (e) {
-	// 	// 		console.error(e);
-	// 	// 	}
-	// 	// };
-
-	// 	// if (country.borders) {
-	// 	// 	try {
-	// 	// 		country.borders.forEach((id) => {
-	// 	// 			fetchBorderCountry(id);
-	// 	// 		});
-	// 	// 	} catch (e) {
-	// 	// 		console.error(e);
-	// 	// 		setBorderCountries(country.borders);
-	// 	// 	}
-	// 	// }
-	// }, []);
-
-	// useEffect(() => {
-	// 	const obj = {};
-	// 	const fetchLanguage = async (langaugeId) => {
-	// 		try {
-	// 			if (langaugeId !== 'br') {
-	// 				const fetchedLanguage = await getCountryByLanguage(
-	// 					langaugeId
-	// 				);
-	// 				for (
-	// 					let i = 0;
-	// 					i < fetchedLanguage[0].languages.length;
-	// 					i++
-	// 				) {
-	// 					if (
-	// 						fetchedLanguage[0].languages[i].iso639_1 ===
-	// 						langaugeId
-	// 					) {
-	// 						obj[langaugeId] =
-	// 							fetchedLanguage[0].languages[i].name;
-	// 						setLanguages({ ...obj });
-	// 					}
-	// 				}
-	// 			} else {
-	// 				obj[langaugeId] = 'Brazilian Portuguese';
-	// 				setLanguages({ ...obj });
-	// 			}
-	// 		} catch (error) {
-	// 			setLanguages(Object.keys(country.translations));
-	// 			console.log(error);
-	// 		}
-	// 	};
-
-	// 	Object.keys(country.translations).forEach((langaugeId) => {
-	// 		const e = async () => {
-	// 			await fetchLanguage(langaugeId);
-	// 		};
-	// 		e();
-	// 	});
-	// }, [country]);
 
 	// Render
 	return (
@@ -245,12 +168,12 @@ const DetailsData = ({ country }) => {
 					/>
 					<Entry
 						name="Independent"
-						value={booleanToString(independent)}
+						value={convertBoolToStr(independent)}
 					/>
-					<Entry name="UN State" value={booleanToString(unMember)} />
+					<Entry name="UN State" value={convertBoolToStr(unMember)} />
 					<Entry
 						name="Landlocked"
-						value={booleanToString(landlocked)}
+						value={convertBoolToStr(landlocked)}
 					/>
 					{borders && (
 						<MultiEntry name="Land Borders" data={countryBorders}>
@@ -366,7 +289,7 @@ const Entry = ({ name, value }) => {
 		<div className="details__data-section-entry">
 			<span className="details__entry-key">{name}:</span>
 			<span className="details__entry-value">
-				{capitalize(value) || '-'}
+				{capitalizeStr(value) || '-'}
 			</span>
 		</div>
 	);

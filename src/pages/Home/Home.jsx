@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 import Search from './Search';
-import Catalog from '../Catalog/Catalog';
+import Catalog from '../../components/Catalog/Catalog';
 
 import { useCountries } from '../../contexts/CountriesContext';
 

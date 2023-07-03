@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 
 import './Favorites.css';
 
-import Banner from '../Banner/Banner';
-import Catalog from '../Catalog/Catalog';
+import Banner from '../../components/Banner/Banner';
+import Catalog from '../../components/Catalog/Catalog';
 
 import { useCountries } from '../../contexts/CountriesContext';
 

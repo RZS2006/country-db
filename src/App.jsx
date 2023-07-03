@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import Favorites from './components/Favorites/Favorites';
-import Details from './components/Details/Details';
+import Home from './pages/Home/Home';
+import Favorites from './pages/Favorites/Favorites';
+import Details from './pages/Details';
 import Alert from './components/Alert/Alert';
 import Loading from './components/Loading/Loading';
 
