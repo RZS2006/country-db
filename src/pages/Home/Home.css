@@ -59,12 +59,14 @@
 .search__filter-container {
 	margin-top: 2rem;
 	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
 	align-items: center;
 }
 
-.search__filter-checkbox-label {
-	margin-right: 2rem;
+.search__filter-label {
 	display: flex;
+	gap: 0.5rem;
 	align-items: center;
 	color: var(--grey-300--text);
 }
@@ -72,7 +74,10 @@
 .search__filter-checkbox {
 	width: 20px;
 	height: 20px;
-	margin-right: 6px;
+}
+
+.search__filter-select {
+	padding: 0.5rem 1rem;
 }
 
 /* Home.js */

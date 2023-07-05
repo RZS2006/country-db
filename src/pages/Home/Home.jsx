@@ -20,7 +20,7 @@ const Home = () => {
 	const [hideNonFavorites, setHideNonFavorites] = useState(false);
 	const [hideFavorites, setHideFavorites] = useState(false);
 	const [sortingProperty, setSortingProperty] = useState('alphabetical');
-	const [sortingOrder, setSortingOrder] = useState('descending');
+	const [sortingOrder, setSortingOrder] = useState('ascending');
 
 	let displayed = [...countries];
 
@@ -48,9 +48,9 @@ const Home = () => {
 	}
 
 	switch (sortingOrder) {
-		case 'descending':
-			break;
 		case 'ascending':
+			break;
+		case 'descending':
 			displayed = displayed.reverse();
 			break;
 	}

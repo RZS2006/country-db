@@ -28,6 +28,7 @@ const Search = ({
 						className="search__query-input"
 						type="text"
 						name="query"
+						id="query"
 						autoComplete="off"
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
@@ -48,34 +49,37 @@ const Search = ({
 			</form>
 			<div className="search__filter-container">
 				<label
-					className="search__input-label search__filter-checkbox-label"
+					className="search__input-label search__filter-label"
 					htmlFor="hide-non-favorites">
 					<input
 						className="search__filter-checkbox"
 						type="checkbox"
 						name="hide-non-favorites"
+						id="hide-non-favorites"
 						checked={hideNonFavorites}
 						onChange={() => setHideNonFavorites(!hideNonFavorites)}
 					/>
 					Hide non-favorites
 				</label>
 				<label
-					className="search__input-label search__filter-checkbox-label"
+					className="search__input-label search__filter-label"
 					htmlFor="hide-favorites">
 					<input
 						className="search__filter-checkbox"
 						type="checkbox"
 						name="hide-favorites"
+						id="hide-favorites"
 						checked={hideFavorites}
 						onChange={() => setHideFavorites(!hideFavorites)}
 					/>
 					Hide favorites
 				</label>
 				<label
-					className="search__input-label search__filter-checkbox-label"
+					className="search__input-label search__filter-label"
 					htmlFor="sorting-property">
-					Sorting Property
+					Sorting property
 					<select
+						className="search__filter-select"
 						name="sorting-property"
 						id="sorting-property"
 						value={sortingProperty}
@@ -86,16 +90,17 @@ const Search = ({
 					</select>
 				</label>
 				<label
-					className="search__input-label search__filter-checkbox-label"
+					className="search__input-label search__filter-label"
 					htmlFor="sorting-order">
-					Sorting Order
+					Sorting order
 					<select
+						className="search__filter-select"
 						name="sorting-order"
 						id="sorting-order"
 						value={sortingOrder}
 						onChange={(e) => setSortingOrder(e.target.value)}>
-						<option value="descending">Descending</option>
 						<option value="ascending">Ascending</option>
+						<option value="descending">Descending</option>
 					</select>
 				</label>
 			</div>
