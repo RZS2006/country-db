@@ -66,8 +66,6 @@ const DetailsData = ({ country }) => {
 		fetchCountryBorders();
 	}, [country]);
 
-	console.log(country);
-
 	// Render
 	return (
 		<div className="details__data">

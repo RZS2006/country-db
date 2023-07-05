@@ -1,8 +1,13 @@
 import React from 'react';
 
+import { useCountries } from '../../contexts/CountriesContext';
+
 // Component
-const DetailsHeader = ({ country, toggleFavoriteStatus }) => {
+const DetailsHeader = ({ country }) => {
 	const { id, name, favorited } = country;
+	const {
+		methods: { toggleFavoriteStatus },
+	} = useCountries();
 
 	// Render
 	return (

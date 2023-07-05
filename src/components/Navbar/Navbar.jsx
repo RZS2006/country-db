@@ -8,7 +8,9 @@ import { useCountries } from '../../contexts/CountriesContext';
 // Component
 const Navbar = () => {
 	// Context
-	const countries = useCountries();
+	const {
+		data: { countries },
+	} = useCountries();
 
 	// State
 	const favoritedCountriesNumber = useMemo(

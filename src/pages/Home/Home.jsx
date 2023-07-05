@@ -11,7 +11,10 @@ import { getRelevancy } from '../../utils';
 
 // Component
 const Home = () => {
-	const countries = useCountries();
+	const {
+		data: { countries },
+	} = useCountries();
+
 	const navigate = useNavigate();
 
 	// State
@@ -56,20 +59,17 @@ const Home = () => {
 	}
 
 	if (query && query.trim().length > 0) {
-		const queryValue = query.trim().toLowerCase();
+		const value = query.trim().toLowerCase();
 
 		displayed = displayed
-			.filter(({ name: { common: countryName } }) => {
-				return countryName.toLowerCase().includes(queryValue);
+			.filter(({ name: { common: name } }) => {
+				return name.toLowerCase().includes(value);
 			})
 			.sort(
-				(
-					{ name: { common: countryAName } },
-					{ name: { common: countryBName } }
-				) => {
+				({ name: { common: nameA } }, { name: { common: nameB } }) => {
 					return (
-						getRelevancy(countryBName.toLowerCase(), queryValue) -
-						getRelevancy(countryAName.toLowerCase(), queryValue)
+						getRelevancy(nameB.toLowerCase(), value) -
+						getRelevancy(nameA.toLowerCase(), value)
 					);
 				}
 			);

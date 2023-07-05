@@ -6,18 +6,20 @@ import './Details.css';
 import Banner from '../../components/Banner/Banner';
 import DetailsHeader from './DetailsHeader';
 import DetailsImages from './DetailsImages';
+import DetailsMaps from './DetailsMaps';
 import DetailsData from './DetailsData';
 
 import { useCountries } from '../../contexts/CountriesContext';
-import DetailsMaps from './DetailsMaps';
 
 // Component
-const Details = ({ toggleFavoriteStatus }) => {
+const Details = () => {
 	const navigate = useNavigate();
-	const { code } = useParams();
+	const { id } = useParams();
 
 	// Context
-	const countries = useCountries();
+	const {
+		data: { countries },
+	} = useCountries();
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -25,8 +27,8 @@ const Details = ({ toggleFavoriteStatus }) => {
 
 	// State
 	const country = useMemo(() => {
-		return countries.find((country) => country.id === code);
-	}, [countries, code]);
+		return countries.find((country) => country.id === id);
+	}, [countries, id]);
 
 	if (!country) {
 		navigate('/');
@@ -37,10 +39,7 @@ const Details = ({ toggleFavoriteStatus }) => {
 		<main className="details">
 			<Banner />
 			<div className="container">
-				<DetailsHeader
-					country={country}
-					toggleFavoriteStatus={toggleFavoriteStatus}
-				/>
+				<DetailsHeader country={country} />
 				<DetailsImages country={country} />
 				<DetailsMaps country={country} />
 				<DetailsData country={country} />

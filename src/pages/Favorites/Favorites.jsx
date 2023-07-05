@@ -10,10 +10,12 @@ import { useCountries } from '../../contexts/CountriesContext';
 // Component
 const Favorites = () => {
 	// Context
-	const countries = useCountries();
+	const {
+		data: { countries },
+	} = useCountries();
 
 	// State
-	const favoritedCountries = useMemo(
+	const favorited = useMemo(
 		() => countries.filter((country) => country.favorited),
 		[countries]
 	);
@@ -28,7 +30,7 @@ const Favorites = () => {
 				</div>
 
 				<Catalog
-					countries={favoritedCountries}
+					countries={favorited}
 					noResultsMessage="No countries favorited"
 				/>
 			</div>
