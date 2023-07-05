@@ -7,7 +7,7 @@ const Loading = () => {
 	// Render
 	return (
 		<div className="loading">
-			<div aria-label="Loading..." class="spinner"></div>
+			<div aria-label="Loading..." className="spinner"></div>
 		</div>
 	);
 };

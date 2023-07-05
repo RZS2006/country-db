@@ -19,6 +19,8 @@ const Home = () => {
 
 	const [hideNonFavorites, setHideNonFavorites] = useState(false);
 	const [hideFavorites, setHideFavorites] = useState(false);
+	const [sortingProperty, setSortingProperty] = useState('alphabetical');
+	const [sortingOrder, setSortingOrder] = useState('descending');
 
 	let displayed = [...countries];
 
@@ -28,6 +30,31 @@ const Home = () => {
 	if (hideFavorites) {
 		displayed = displayed.filter((country) => !country.favorited);
 	}
+
+	switch (sortingProperty) {
+		case 'alphabetical':
+			displayed = displayed.sort((a, b) => {
+				return a.name.common
+					.toString()
+					.localeCompare(b.name.common.toString());
+			});
+			break;
+		case 'population':
+			displayed = displayed.sort((a, b) => a.population - b.population);
+			break;
+		case 'area':
+			displayed = displayed.sort((a, b) => a.area - b.area);
+			break;
+	}
+
+	switch (sortingOrder) {
+		case 'descending':
+			break;
+		case 'ascending':
+			displayed = displayed.reverse();
+			break;
+	}
+
 	if (query && query.trim().length > 0) {
 		const queryValue = query.trim().toLowerCase();
 
@@ -70,6 +97,10 @@ const Home = () => {
 					setHideNonFavorites={setHideNonFavorites}
 					hideFavorites={hideFavorites}
 					setHideFavorites={setHideFavorites}
+					sortingProperty={sortingProperty}
+					setSortingProperty={setSortingProperty}
+					sortingOrder={sortingOrder}
+					setSortingOrder={setSortingOrder}
 				/>
 
 				<div className="home__results-container">

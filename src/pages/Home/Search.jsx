@@ -11,6 +11,10 @@ const Search = ({
 	setHideNonFavorites,
 	hideFavorites,
 	setHideFavorites,
+	sortingProperty,
+	setSortingProperty,
+	sortingOrder,
+	setSortingOrder,
 }) => {
 	// Render
 	return (
@@ -66,6 +70,33 @@ const Search = ({
 						onChange={() => setHideFavorites(!hideFavorites)}
 					/>
 					Hide favorites
+				</label>
+				<label
+					className="search__input-label search__filter-checkbox-label"
+					htmlFor="sorting-property">
+					Sorting Property
+					<select
+						name="sorting-property"
+						id="sorting-property"
+						value={sortingProperty}
+						onChange={(e) => setSortingProperty(e.target.value)}>
+						<option value="alphabetical">Alphabetical</option>
+						<option value="population">Population</option>
+						<option value="area">Area</option>
+					</select>
+				</label>
+				<label
+					className="search__input-label search__filter-checkbox-label"
+					htmlFor="sorting-order">
+					Sorting Order
+					<select
+						name="sorting-order"
+						id="sorting-order"
+						value={sortingOrder}
+						onChange={(e) => setSortingOrder(e.target.value)}>
+						<option value="descending">Descending</option>
+						<option value="ascending">Ascending</option>
+					</select>
 				</label>
 			</div>
 		</section>
