@@ -3,19 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // Component
-const Search = ({
-	query,
-	setQuery,
-	search,
-	hideNonFavorites,
-	setHideNonFavorites,
-	hideFavorites,
-	setHideFavorites,
-	sortingProperty,
-	setSortingProperty,
-	sortingOrder,
-	setSortingOrder,
-}) => {
+const Search = ({ ...props }) => {
 	// Render
 	return (
 		<section className="search">
@@ -30,20 +18,20 @@ const Search = ({
 						name="query"
 						id="query"
 						autoComplete="off"
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
+						value={props.query}
+						onChange={(e) => props.setQuery(e.target.value)}
 					/>
 				</label>
 				<button
 					className="search__query-submit primary"
 					type="submit"
-					onClick={(e) => search(e)}>
+					onClick={(e) => props.search(e)}>
 					Search
 				</button>
 				<button
 					className="search__query-submit secondary"
 					type="submit"
-					onClick={(e) => search(e)}>
+					onClick={(e) => props.search(e)}>
 					<FontAwesomeIcon icon={faSearch} />
 				</button>
 			</form>
@@ -56,8 +44,10 @@ const Search = ({
 						type="checkbox"
 						name="hide-non-favorites"
 						id="hide-non-favorites"
-						checked={hideNonFavorites}
-						onChange={() => setHideNonFavorites(!hideNonFavorites)}
+						checked={props.hideNonFavorites}
+						onChange={() =>
+							props.setHideNonFavorites(!props.hideNonFavorites)
+						}
 					/>
 					Hide non-favorites
 				</label>
@@ -69,8 +59,10 @@ const Search = ({
 						type="checkbox"
 						name="hide-favorites"
 						id="hide-favorites"
-						checked={hideFavorites}
-						onChange={() => setHideFavorites(!hideFavorites)}
+						checked={props.hideFavorites}
+						onChange={() =>
+							props.setHideFavorites(!props.hideFavorites)
+						}
 					/>
 					Hide favorites
 				</label>
@@ -82,8 +74,10 @@ const Search = ({
 						className="search__filter-select"
 						name="sorting-property"
 						id="sorting-property"
-						value={sortingProperty}
-						onChange={(e) => setSortingProperty(e.target.value)}>
+						value={props.sortingProperty}
+						onChange={(e) =>
+							props.setSortingProperty(e.target.value)
+						}>
 						<option value="alphabetical">Alphabetical</option>
 						<option value="population">Population</option>
 						<option value="area">Area</option>
@@ -97,8 +91,8 @@ const Search = ({
 						className="search__filter-select"
 						name="sorting-order"
 						id="sorting-order"
-						value={sortingOrder}
-						onChange={(e) => setSortingOrder(e.target.value)}>
+						value={props.sortingOrder}
+						onChange={(e) => props.setSortingOrder(e.target.value)}>
 						<option value="ascending">Ascending</option>
 						<option value="descending">Descending</option>
 					</select>

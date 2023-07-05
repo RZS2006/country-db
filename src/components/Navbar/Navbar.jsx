@@ -13,7 +13,7 @@ const Navbar = () => {
 	} = useCountries();
 
 	// State
-	const favoritedCountriesNumber = useMemo(
+	const favorited = useMemo(
 		() => countries.filter((country) => country.favorited).length,
 		[countries]
 	);
@@ -31,7 +31,7 @@ const Navbar = () => {
 						<Link to="/favorites">
 							<small>Favorites</small>
 							<span className="navbar__favorites-amount-badge">
-								{favoritedCountriesNumber}
+								{favorited}
 							</span>
 						</Link>
 					</div>
