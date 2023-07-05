@@ -2,6 +2,7 @@ export const LANGUAGES_NAMES = {
 	ara: 'Arabic',
 	bre: 'Breton',
 	ces: 'Czech',
+	cym: 'Welsh',
 	deu: 'German',
 	est: 'Estonian',
 	fin: 'Finnish',
