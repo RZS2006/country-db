@@ -80,7 +80,8 @@ const Search = ({ ...props }) => {
 						}>
 						<option value="alphabetical">Alphabetical</option>
 						<option value="population">Population</option>
-						<option value="area">Area</option>
+						<option value="alpha-2">Alpha-2</option>
+						<option value="alpha-3">Alpha-3</option>
 					</select>
 				</label>
 				<label

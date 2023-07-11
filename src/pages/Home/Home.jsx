@@ -49,6 +49,16 @@ const Home = () => {
 		case 'area':
 			displayed = displayed.sort((a, b) => a.area - b.area);
 			break;
+		case 'alpha-2':
+			displayed = displayed.sort((a, b) => {
+				return a.cca2.toString().localeCompare(b.cca2.toString());
+			});
+			break;
+		case 'alpha-3':
+			displayed = displayed.sort((a, b) => {
+				return a.cca3.toString().localeCompare(b.cca3.toString());
+			});
+			break;
 	}
 
 	switch (sortingOrder) {
