@@ -6,9 +6,7 @@ import './Catalog.css';
 
 import CatalogItem from './CatalogItem';
 
-// Component
 const Catalog = ({ countries, noResultsMessage }) => {
-	// Render
 	return (
 		<section className="catalog">
 			{countries.length > 0 ? (

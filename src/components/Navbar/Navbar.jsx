@@ -5,20 +5,16 @@ import './Navbar.css';
 
 import { useCountries } from '../../contexts/CountriesContext';
 
-// Component
 const Navbar = () => {
-	// Context
 	const {
 		data: { countries },
 	} = useCountries();
 
-	// State
 	const favorited = useMemo(
 		() => countries.filter((country) => country.favorited).length,
 		[countries]
 	);
 
-	// Render
 	return (
 		<nav className="navbar">
 			<div className="container">

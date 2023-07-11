@@ -10,7 +10,6 @@ import Catalog from '../../components/Catalog/Catalog';
 import { useCountries } from '../../contexts/CountriesContext';
 import { getRelevancy } from '../../utils';
 
-// Component
 const Home = () => {
 	const {
 		data: { countries },
@@ -18,7 +17,6 @@ const Home = () => {
 
 	const navigate = useNavigate();
 
-	// State
 	const [query, setQuery] = useState('');
 
 	const [hideNonFavorites, setHideNonFavorites] = useState(false);
@@ -86,8 +84,6 @@ const Home = () => {
 			);
 	}
 
-	// Functions
-
 	const search = (e) => {
 		e.preventDefault();
 		if (query && displayed.length > 0) {
@@ -96,7 +92,6 @@ const Home = () => {
 		}
 	};
 
-	// Render
 	return (
 		<>
 			<Helmet>

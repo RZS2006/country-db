@@ -4,9 +4,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 import './Alert.css';
 
-// Component
 const Alert = () => {
-	// Render
 	return (
 		<section className="alert">
 			<div className="container">

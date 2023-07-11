@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-// Component
 const Search = ({ ...props }) => {
-	// Render
 	return (
 		<section className="search">
 			<form className="search__query-container">

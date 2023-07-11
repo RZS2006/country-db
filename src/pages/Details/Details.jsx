@@ -12,17 +12,14 @@ import DetailsData from './DetailsData';
 
 import { useCountries } from '../../contexts/CountriesContext';
 
-// Component
 const Details = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();
 
-	// Context
 	const {
 		data: { countries },
 	} = useCountries();
 
-	// State
 	const country = useMemo(() => {
 		return countries.find((country) => country.id === id);
 	}, [countries, id]);
@@ -35,7 +32,6 @@ const Details = () => {
 		window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 	}, [country]);
 
-	// Render
 	return (
 		<>
 			<Helmet>

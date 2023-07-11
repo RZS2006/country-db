@@ -8,20 +8,16 @@ import Catalog from '../../components/Catalog/Catalog';
 
 import { useCountries } from '../../contexts/CountriesContext';
 
-// Component
 const Favorites = () => {
-	// Context
 	const {
 		data: { countries },
 	} = useCountries();
 
-	// State
 	const favorited = useMemo(
 		() => countries.filter((country) => country.favorited),
 		[countries]
 	);
 
-	// Render
 	return (
 		<>
 			<Helmet>

@@ -4,7 +4,6 @@ import { useState, useEffect, useContext } from 'react';
 import { getCountries } from '../api';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-// Exports
 export const CountriesContext = React.createContext();
 
 export const useCountries = () => {

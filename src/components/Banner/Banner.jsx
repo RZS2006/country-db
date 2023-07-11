@@ -5,9 +5,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 import './Banner.css';
 
-// Component
 const Banner = () => {
-	// Render
 	return (
 		<section className="banner">
 			<div className="container">

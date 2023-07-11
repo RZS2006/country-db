@@ -1,10 +1,8 @@
 import React from 'react';
 
-// Component
 const DetailsImages = ({ country }) => {
 	const { name, flags, coatOfArms } = country;
 
-	// Render
 	return (
 		<div className="details__image-container">
 			<div>

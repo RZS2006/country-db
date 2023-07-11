@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Component
 const CatalogItem = ({ country }) => {
 	const { id, name, favorited, flags } = country;
 
-	// Render
 	return (
 		<Link to={`/countries/${id}`}>
 			<div className="catalog-item">

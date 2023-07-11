@@ -7,7 +7,6 @@ import { getCountryById, getCountryByLanguage } from '../../api';
 import { convertBoolToStr, capitalizeStr } from '../../utils';
 import { LANGUAGES_NAMES } from '../../data/constants';
 
-// Component
 const DetailsData = ({ country }) => {
 	const {
 		name,
@@ -34,11 +33,9 @@ const DetailsData = ({ country }) => {
 		idd,
 	} = country;
 
-	// State
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [countryBorders, setCountryBorders] = useState([]);
 
-	// Side Effects
 	useEffect(() => {
 		const fetchCountryBorder = async (id) => {
 			const border = await getCountryById(id);
@@ -66,7 +63,6 @@ const DetailsData = ({ country }) => {
 		fetchCountryBorders();
 	}, [country]);
 
-	// Render
 	return (
 		<div className="details__data">
 			<div className="details__data-section names">

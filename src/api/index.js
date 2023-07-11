@@ -1,6 +1,5 @@
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
-// Exports
 export const getCountries = async () => {
 	try {
 		const res = await fetch(`${BASE_URL}all`);
