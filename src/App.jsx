@@ -15,11 +15,9 @@ import Loading from './components/Loading/Loading';
 
 import { useCountries } from './contexts/CountriesContext';
 
-// Component
 const App = () => {
 	const { loading, error } = useCountries();
 
-	// Render
 	if (loading) {
 		return <Loading />;
 	}

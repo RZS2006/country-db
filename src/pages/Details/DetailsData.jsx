@@ -313,7 +313,7 @@ const MultiEntry = ({ name, data, children }) => {
 
 const Chip = ({ primary, secondary, link }) => {
 	return link ? (
-		<Link to={link} className="details__entry-value-chip">
+		<Link to={link} className="details__entry-value-chip hoverable">
 			<span>{primary}</span>
 			{secondary && <small>({secondary})</small>}
 		</Link>

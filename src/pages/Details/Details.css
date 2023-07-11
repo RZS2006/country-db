@@ -216,6 +216,14 @@
 	background-color: var(--grey-200);
 }
 
+.details__entry-value-chip.hoverable {
+	transition: background-color var(--transition);
+}
+
+.details__entry-value-chip.hoverable:hover {
+	background-color: var(--grey-300);
+}
+
 .details__entry-value-chip:last-child {
 	margin-right: 0;
 }
