@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import './index.css';
 
@@ -8,9 +9,11 @@ import CountriesProvider from './contexts/CountriesContext';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<CountriesProvider>
-			<App />
-		</CountriesProvider>
+		<HelmetProvider>
+			<CountriesProvider>
+				<App />
+			</CountriesProvider>
+		</HelmetProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

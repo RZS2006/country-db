@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 import './Details.css';
 
@@ -21,10 +22,6 @@ const Details = () => {
 		data: { countries },
 	} = useCountries();
 
-	useEffect(() => {
-		window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-	}, []);
-
 	// State
 	const country = useMemo(() => {
 		return countries.find((country) => country.id === id);
@@ -34,17 +31,30 @@ const Details = () => {
 		navigate('/');
 	}
 
+	useEffect(() => {
+		window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+	}, [country]);
+
 	// Render
 	return (
-		<main className="details">
-			<Banner />
-			<div className="container">
-				<DetailsHeader country={country} />
-				<DetailsImages country={country} />
-				<DetailsMaps country={country} />
-				<DetailsData country={country} />
-			</div>
-		</main>
+		<>
+			<Helmet>
+				<title>{country.name.common} | CountryDB</title>
+				<meta
+					name="description"
+					content="Get the information of all the countries in the world using CountryDB."
+				/>
+			</Helmet>
+			<main className="details">
+				<Banner />
+				<div className="container">
+					<DetailsHeader country={country} />
+					<DetailsImages country={country} />
+					<DetailsMaps country={country} />
+					<DetailsData country={country} />
+				</div>
+			</main>
+		</>
 	);
 };
 

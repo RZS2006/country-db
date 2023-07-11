@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 import './Home.css';
 
@@ -87,33 +88,42 @@ const Home = () => {
 
 	// Render
 	return (
-		<main className="home">
-			<div className="container">
-				<Search
-					query={query}
-					setQuery={setQuery}
-					search={search}
-					hideNonFavorites={hideNonFavorites}
-					setHideNonFavorites={setHideNonFavorites}
-					hideFavorites={hideFavorites}
-					setHideFavorites={setHideFavorites}
-					sortingProperty={sortingProperty}
-					setSortingProperty={setSortingProperty}
-					sortingOrder={sortingOrder}
-					setSortingOrder={setSortingOrder}
+		<>
+			<Helmet>
+				<title>CountryDB: Database of the World</title>
+				<meta
+					name="description"
+					content="Get the information of all the countries in the world using CountryDB."
 				/>
-
-				<div className="home__results-container">
-					<div className="home__results-found-container">
-						<small>{`${displayed.length} result(s) found`}</small>
-					</div>
-					<Catalog
-						countries={displayed}
-						noResultsMessage="No countries found"
+			</Helmet>
+			<main className="home">
+				<div className="container">
+					<Search
+						query={query}
+						setQuery={setQuery}
+						search={search}
+						hideNonFavorites={hideNonFavorites}
+						setHideNonFavorites={setHideNonFavorites}
+						hideFavorites={hideFavorites}
+						setHideFavorites={setHideFavorites}
+						sortingProperty={sortingProperty}
+						setSortingProperty={setSortingProperty}
+						sortingOrder={sortingOrder}
+						setSortingOrder={setSortingOrder}
 					/>
+
+					<div className="home__results-container">
+						<div className="home__results-found-container">
+							<small>{`${displayed.length} result(s) found`}</small>
+						</div>
+						<Catalog
+							countries={displayed}
+							noResultsMessage="No countries found"
+						/>
+					</div>
 				</div>
-			</div>
-		</main>
+			</main>
+		</>
 	);
 };
 
