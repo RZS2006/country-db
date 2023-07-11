@@ -19,13 +19,3 @@ export const getCountryById = async (id) => {
 		throw new Error(e);
 	}
 };
-
-export const getCountryByLanguage = async (language) => {
-	try {
-		const res = await fetch(`${BASE_URL}lang/${language}`);
-		const data = await res.json();
-		return data;
-	} catch (e) {
-		throw new Error(e);
-	}
-};

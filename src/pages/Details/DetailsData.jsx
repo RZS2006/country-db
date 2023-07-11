@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-import { getCountryById, getCountryByLanguage } from '../../api';
+import { getCountryById } from '../../api';
 import { convertBoolToStr, capitalizeStr } from '../../utils';
 import { LANGUAGES_NAMES } from '../../data/constants';
 
