@@ -31,6 +31,7 @@ const Search = ({ ...props }) => {
 				<button
 					className="search__query-submit secondary"
 					type="submit"
+					aria-label="Search"
 					onClick={(e) => props.search(e)}>
 					<FontAwesomeIcon icon={faSearch} />
 				</button>
