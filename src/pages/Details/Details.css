@@ -166,15 +166,14 @@
 }
 
 .details__dropdown-button {
+	border: none;
 	padding: 1rem 2rem;
 	font-size: 1.6rem;
 	background-color: var(--grey-200);
+	width: 100%;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
-}
-
-.details__dropdown-button > span {
-	margin-right: auto;
 }
 
 .details__data-section-dropdown svg {

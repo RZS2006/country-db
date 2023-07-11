@@ -97,17 +97,28 @@ const DetailsData = ({ country }) => {
 					</MultiEntry>
 				</div>
 
-				<div
+				<section
 					className={`details__data-section-dropdown ${
 						dropdownOpen ? 'open' : 'closed'
 					}`}>
-					<div
-						className="details__dropdown-button"
-						onClick={() => setDropdownOpen((prev) => !prev)}>
-						<span>Translations</span>
-						<FontAwesomeIcon icon={faChevronDown} />
+					<div>
+						<h3>
+							<button
+								className="details__dropdown-button"
+								aria-expanded={dropdownOpen}
+								aria-controls="dropdown-content"
+								onClick={() =>
+									setDropdownOpen((prev) => !prev)
+								}>
+								Translations
+								<FontAwesomeIcon icon={faChevronDown} />
+							</button>
+						</h3>
 					</div>
-					<div className="details__dropdown-panel">
+					<div
+						className="details__dropdown-panel"
+						id="accordion-content"
+						aria-hidden={!dropdownOpen}>
 						<div className="details__dropdown-panel-content">
 							<div>
 								{Object.keys(translations).map((key, i) => {
@@ -122,7 +133,7 @@ const DetailsData = ({ country }) => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 			<div className="details__data-section geography">
 				<div className="details__data-section-header">Geography</div>
