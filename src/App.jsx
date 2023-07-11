@@ -26,16 +26,14 @@ const App = () => {
 
 	return (
 		<Router>
-			<div className="app">
-				<Navbar />
-				{error && <Alert />}
-				<Routes>
-					<Route index path="/" element={<Home />} />
-					<Route path="/favorites" element={<Favorites />} />
-					<Route path="/countries/:id" element={<Details />} />
-					<Route path="*" element={<Navigate to="/" replace />} />
-				</Routes>
-			</div>
+			<Navbar />
+			{error && <Alert />}
+			<Routes>
+				<Route index path="/" element={<Home />} />
+				<Route path="/favorites" element={<Favorites />} />
+				<Route path="/countries/:id" element={<Details />} />
+				<Route path="*" element={<Navigate to="/" replace />} />
+			</Routes>
 		</Router>
 	);
 };
