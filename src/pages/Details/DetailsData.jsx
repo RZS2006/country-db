@@ -117,7 +117,7 @@ const DetailsData = ({ country }) => {
 					</div>
 					<div
 						className="details__dropdown-panel"
-						id="accordion-content"
+						id="dropdown-content"
 						aria-hidden={!dropdownOpen}>
 						<div className="details__dropdown-panel-content">
 							<div>
