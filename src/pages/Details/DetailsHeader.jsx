@@ -23,16 +23,14 @@ const DetailsHeader = ({ country }) => {
 					</h2>
 				</div>
 
-				<span
+				<button
 					className={`details__favorite-status-container ${
 						favorited ? 'favorited' : 'not-favorited'
 					}`}
 					onClick={() => toggleFavoriteStatus(id)}>
-					<small>
-						{favorited ? 'Favorited' : 'Add to Favorites'}
-					</small>
+					{favorited ? 'Favorited' : 'Add to Favorites'}
 					<span className="details__favorite-status-dot"></span>
-				</span>
+				</button>
 			</div>
 		</>
 	);

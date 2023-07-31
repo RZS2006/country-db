@@ -35,9 +35,12 @@
 	display: inline-flex;
 	align-items: center;
 	padding: 0.6rem 1.2rem;
+	border: none;
 	border-radius: 6px;
 	background-color: var(--grey-200);
 	cursor: pointer;
+	white-space: nowrap;
+	font-size: 1.6rem;
 }
 
 .details__favorite-status-container:hover {
@@ -45,16 +48,11 @@
 	transition: var(--transition);
 }
 
-.details__favorite-status-container small {
-	white-space: nowrap;
-	font-size: 1.6rem;
-}
-
-.details__favorite-status-container.favorited small {
+.details__favorite-status-container.favorited {
 	color: var(--green-primary);
 }
 
-.details__favorite-status-container.not-favorited small {
+.details__favorite-status-container.not-favorited {
 	color: var(--grey-300--text);
 }
 
